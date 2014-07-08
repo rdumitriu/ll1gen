@@ -1,0 +1,22 @@
+
+namespace x
+namespace y
+namespace z
+
+class BeanName1 
+  name1  unsigned int
+  name2  double
+  name3 + string
+
+class BeanName2
+  name1 int
+  name2 string
+
+class BeanContainerName3
+  name1 *  	BeanName1
+  name2   	BeanName1
+  name3 +  	BeanName2
+  name4   	bool
+  name5		long
+  name6 +* 	BeanName1
+
