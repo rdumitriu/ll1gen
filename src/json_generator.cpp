@@ -15,46 +15,46 @@ std::string JsonGenerator::getName() {
 //virtual
 std::vector<std::string> JsonGenerator::expectedTemplates() {
     std::vector<std::string> ret;
-    ret.push_back("json_utils.hpp");
-    ret.push_back("json_bean_template.t");
-    ret.push_back("ref_getter_content.t");
-    ret.push_back("std_getter_content.t");
+    ret.push_back("json_utils.hpp"); //*
+    ret.push_back("json_bean_template.t"); //*
+    ret.push_back("ref_getter_content.t"); //*
+    ret.push_back("std_getter_content.t"); //*
 
-    ret.push_back("serialize_normal_field.t");
-    ret.push_back("deserialize_normal_field.t");
+    ret.push_back("serialize_normal_field.t"); //*
+//    ret.push_back("deserialize_normal_field.t");
 
-    ret.push_back("serialize_ref_vector.t");
-    ret.push_back("deserialize_ref_vector.t");
+    ret.push_back("serialize_ref_vector.t"); //*
+//    ret.push_back("deserialize_ref_vector.t");
 
-    ret.push_back("serialize_ref_vector_string.t");
-    ret.push_back("deserialize_ref_vector_string.t");
+    ret.push_back("serialize_ref_vector_string.t"); //*
+//    ret.push_back("deserialize_ref_vector_string.t");
 
-    ret.push_back("serialize_ref_vector_bool.t");
-    ret.push_back("deserialize_ref_vector_bool.t");
+    ret.push_back("serialize_ref_vector_bool.t"); //*
+//    ret.push_back("deserialize_ref_vector_bool.t");
 
-    ret.push_back("serialize_sptr_normal_field.t");
-    ret.push_back("deserialize_sptr_normal_field.t");
+    ret.push_back("serialize_sptr_normal_field.t"); //*
+//    ret.push_back("deserialize_sptr_normal_field.t");
 
-    ret.push_back("serialize_sptr_string.t");
-    ret.push_back("deserialize_sptr_string.t");
+    ret.push_back("serialize_sptr_string.t"); //*
+//    ret.push_back("deserialize_sptr_string.t");
 
-    ret.push_back("serialize_sptr_bool.t");
-    ret.push_back("deserialize_sptr_bool.t");
+    ret.push_back("serialize_sptr_bool.t"); //*
+//    ret.push_back("deserialize_sptr_bool.t");
 
-    ret.push_back("serialize_vector_bool.t");
-    ret.push_back("deserialize_vector_bool.t");
+    ret.push_back("serialize_vector_bool.t"); //*
+//    ret.push_back("deserialize_vector_bool.t");
 
-    ret.push_back("serialize_vector_string.t");
-    ret.push_back("deserialize_vector_string.t");
+    ret.push_back("serialize_vector_string.t"); //*
+//    ret.push_back("deserialize_vector_string.t");
 
-    ret.push_back("serialize_vector.t");
-    ret.push_back("deserialize_vector.t");
+    ret.push_back("serialize_vector.t"); //*
+//    ret.push_back("deserialize_vector.t");
 
-    ret.push_back("serialize_string.t");
-    ret.push_back("deserialize_string.t");
+    ret.push_back("serialize_string.t"); //*
+//    ret.push_back("deserialize_string.t");
 
-    ret.push_back("serialize_bool.t");
-    ret.push_back("deserialize_bool.t");
+    ret.push_back("serialize_bool.t"); //*
+//    ret.push_back("deserialize_bool.t");
 
     return ret;
 }
@@ -107,6 +107,7 @@ bool JsonGenerator::processBeanFieldsSpecification(FTemplate & t, BeanClazzSpeci
         if(!processFieldSpecification(i, t, fs, bcs)) {
             return false;
         }
+        i++;
     }
     return createFullFieldConstructor(t, bcs) &&
            createImportList(t, bcs);
@@ -131,6 +132,8 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
     //NOTE: shared pointers are easy to copy
     if(fs.flags & FieldFlags::F_VECTOR && fs.flags & FieldFlags::F_POINTER) {
         typeDecl = "std::vector<std::shared_ptr<" + realType + ">>";
+        typeSetPredecl = "const";
+        typeSetPostdecl = "&";
         fieldSerializerTemplate = "serialize_ref_vector.t";
         if(fs.type == "string") {
             fieldSerializerTemplate = "serialize_ref_vector_string.t";
@@ -199,15 +202,15 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
     t.insertBeforeMarker("field_ostream_end", stdSerializer.getContent());
 
     //5::deserializers
-    if(ndx > 0) {
-        t.insertBeforeMarker("field_istream_end", "else");
-    }
-    std::string fieldDeserializerTemplate = "de" + fieldSerializerTemplate;
-    FTemplate stdDeserializer("", getTemplateContent(fieldDeserializerTemplate));
-    stdDeserializer.replaceToken("type", typeDecl);
-    stdDeserializer.replaceToken("field_name", fs.name);
-    stdDeserializer.replaceToken("var_name", varName);
-    t.insertBeforeMarker("field_ostream_end", stdDeserializer.getContent());
+//    if(ndx > 0) {
+//        t.insertBeforeMarker("field_istream_end", "else");
+//    }
+//    std::string fieldDeserializerTemplate = "de" + fieldSerializerTemplate;
+//    FTemplate stdDeserializer("", getTemplateContent(fieldDeserializerTemplate));
+//    stdDeserializer.replaceToken("type", typeDecl);
+//    stdDeserializer.replaceToken("field_name", fs.name);
+//    stdDeserializer.replaceToken("var_name", varName);
+//    t.insertBeforeMarker("field_ostream_end", stdDeserializer.getContent());
 
     return true;
 }
