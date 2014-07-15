@@ -110,7 +110,7 @@ bool JsonGenerator::processBeanFieldsSpecification(FTemplate & t, BeanClazzSpeci
         i++;
     }
     return createFullFieldConstructor(t, bcs) &&
-           createImportList(t, bcs);
+           createImportList(t);
 }
 
 bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
@@ -127,7 +127,6 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
     std::string typeSetPredecl = "";
     std::string typeSetPostdecl = "";
     std::string fieldSerializerTemplate = "serialize_normal_field.t";
-
 
     //NOTE: shared pointers are easy to copy
     if(fs.flags & FieldFlags::F_VECTOR && fs.flags & FieldFlags::F_POINTER) {
@@ -161,7 +160,6 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
         }
     } else {
         if(isOutputTemplateRegistered(realType)) {
-            t.addDependent(realType);
             typeSetPredecl = "const";
             typeSetPostdecl = "&";
             fieldSerializerTemplate = "serialize_normal_field.t"; //superfluous
@@ -172,6 +170,9 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
         } else if(fs.type == "bool") {
             fieldSerializerTemplate = "serialize_bool.t";
         }
+    }
+    if(isOutputTemplateRegistered(realType)) {
+        t.addDependent(realType);
     }
     //1:: insert declaration
     t.insertBeforeMarker("field_decl_end", typeDecl + " " + varName + ";");
@@ -215,7 +216,10 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
     return true;
 }
 
-bool JsonGenerator::createImportList(FTemplate & t, BeanClazzSpecification & bcs) {
+bool JsonGenerator::createImportList(FTemplate & t) {
+    for(auto s : t.getDependents()) {
+        t.insertBeforeMarker("include_end", "#include \"" + s + ".hpp\""); //::TODO:: convention (.h, .hpp, ...)
+    }
     return true;
 }
 
@@ -254,7 +258,7 @@ bool JsonGenerator::createOutput() {
 
     std::map<std::string, FTemplate>::iterator i = outputTemplates.begin();
     for(; i != outputTemplates.end(); ++i) {
-        std::string fName = i->first + ".hpp";
+        std::string fName = i->first + ".hpp"; //::TODO:: convention (.h, .hpp, ...)
         writeContent(fName, i->second.getContent());
     }
     return true;

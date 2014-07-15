@@ -37,7 +37,7 @@ private:
     bool processFieldSpecification(unsigned int ndx, FTemplate & t,
                                    FieldSpecification & fs, BeanClazzSpecification & bcs);
 
-    bool createImportList(FTemplate & t, BeanClazzSpecification & bcs);
+    bool createImportList(FTemplate & t);
 
     bool createFullFieldConstructor(FTemplate & t, BeanClazzSpecification & bcs);
 };
