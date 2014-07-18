@@ -86,6 +86,28 @@ char lookUpAndEat(std::istream& stream, const std::string & ends) {
     return c;
 }
 
+void lookUpTokenRemainder(std::istream& stream, char start, const std::string & token) {
+    if(token.at(0) != start) {
+        std::ostringstream msg;
+        msg << "Parse error, found char >>" << start << "<< but was expecting " << token;
+        throw std::runtime_error(msg.str());
+    }
+    unsigned int i = 1;
+    while(i < token.size()) {
+        char c = stream.get();
+        if(stream.bad()) {
+            throw std::runtime_error("Encountered premature EOF");
+        }
+        if(c != token.at(i)) {
+            std::ostringstream msg;
+            msg << "Parse error, found char >>" << c << "<< but was expecting " << token
+                << ", char:" << token.at(i) << " position :" << i;
+            throw std::runtime_error(msg.str());
+        }
+        ++i;
+    }
+}
+
 std::string lookUp(std::istream& stream, const std::string & ends) {
     bool found = false;
     int state = 0;
@@ -160,6 +182,54 @@ std::string lookUp(std::istream& stream, const std::string & ends) {
         }
     } while( !found );
     return ret;
+}
+
+bool parseString(std::istream& stream, std::string & s) {
+    char c = ll1gen::json::lookUpAndEat(stream, "\"n");
+    if(c == 'n') {
+        lookUpTokenRemainder(stream, c, "null");
+        return false;
+    }
+    s = lookUp(stream, "\"");
+    return true;
+}
+
+bool parseBool(std::istream& stream, bool & b) {
+    char c = ll1gen::json::lookUpAndEat(stream, "ntf");
+    switch(c) {
+        case 'n':
+            lookUpTokenRemainder(stream, c, "null");
+            return false;
+        case 't':
+            lookUpTokenRemainder(stream, c, "true");
+            b = true;
+            return true;
+        case 'f':
+            lookUpTokenRemainder(stream, c, "false");
+            b = false;
+            return true;
+    }
+    throw std::runtime_error("Bad boolean representation.");
+}
+
+bool lookUpNull(std::istream& stream) {
+    char c = 0;
+    do {
+        c = stream.get();
+        if(stream.bad()) {
+            throw std::runtime_error("Encountered premature EOF");
+        }
+        if(!isblank(c) && c != '\n' && c != '\r') {
+            if(c == 'n') {
+                lookUpTokenRemainder(stream, c, "null");
+                return true;
+            } else {
+                stream.putback(c);
+                return false;
+            }
+        }
+    } while( 1 );
+    return false;
 }
 
 

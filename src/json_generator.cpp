@@ -21,7 +21,7 @@ std::vector<std::string> JsonGenerator::expectedTemplates() {
     ret.push_back("std_getter_content.t"); //*
 
     ret.push_back("serialize_normal_field.t"); //*
-//    ret.push_back("deserialize_normal_field.t");
+    ret.push_back("deserialize_normal_field.t");
 
     ret.push_back("serialize_ref_vector.t"); //*
 //    ret.push_back("deserialize_ref_vector.t");
@@ -33,28 +33,28 @@ std::vector<std::string> JsonGenerator::expectedTemplates() {
 //    ret.push_back("deserialize_ref_vector_bool.t");
 
     ret.push_back("serialize_sptr_normal_field.t"); //*
-//    ret.push_back("deserialize_sptr_normal_field.t");
+    ret.push_back("deserialize_sptr_normal_field.t");
 
     ret.push_back("serialize_sptr_string.t"); //*
-//    ret.push_back("deserialize_sptr_string.t");
+    ret.push_back("deserialize_sptr_string.t");
 
     ret.push_back("serialize_sptr_bool.t"); //*
-//    ret.push_back("deserialize_sptr_bool.t");
+    ret.push_back("deserialize_sptr_bool.t");
 
     ret.push_back("serialize_vector_bool.t"); //*
-//    ret.push_back("deserialize_vector_bool.t");
+    ret.push_back("deserialize_vector_bool.t");
 
     ret.push_back("serialize_vector_string.t"); //*
-//    ret.push_back("deserialize_vector_string.t");
+    ret.push_back("deserialize_vector_string.t");
 
     ret.push_back("serialize_vector.t"); //*
-//    ret.push_back("deserialize_vector.t");
+    ret.push_back("deserialize_vector.t");
 
     ret.push_back("serialize_string.t"); //*
-//    ret.push_back("deserialize_string.t");
+    ret.push_back("deserialize_string.t");
 
     ret.push_back("serialize_bool.t"); //*
-//    ret.push_back("deserialize_bool.t");
+    ret.push_back("deserialize_bool.t");
 
     return ret;
 }
@@ -203,22 +203,23 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
     t.insertBeforeMarker("field_ostream_end", stdSerializer.getContent());
 
     //5::deserializers
-//    if(ndx > 0) {
-//        t.insertBeforeMarker("field_istream_end", "else");
-//    }
-//    std::string fieldDeserializerTemplate = "de" + fieldSerializerTemplate;
-//    FTemplate stdDeserializer("", getTemplateContent(fieldDeserializerTemplate));
-//    stdDeserializer.replaceToken("type", typeDecl);
-//    stdDeserializer.replaceToken("field_name", fs.name);
-//    stdDeserializer.replaceToken("var_name", varName);
-//    t.insertBeforeMarker("field_ostream_end", stdDeserializer.getContent());
+    if(ndx > 0) {
+        t.insertBeforeMarker("field_istream_end", "else");
+    }
+    std::string fieldDeserializerTemplate = "de" + fieldSerializerTemplate;
+    FTemplate stdDeserializer("", getTemplateContent(fieldDeserializerTemplate));
+    stdDeserializer.replaceToken("type", typeDecl);
+    stdDeserializer.replaceToken("field_name", fs.name);
+    stdDeserializer.replaceToken("var_name", varName);
+    t.insertBeforeMarker("field_istream_end", stdDeserializer.getContent());
 
     return true;
 }
 
 bool JsonGenerator::createImportList(FTemplate & t) {
     for(auto s : t.getDependents()) {
-        t.insertBeforeMarker("include_end", "#include \"" + s + ".hpp\""); //::TODO:: convention (.h, .hpp, ...)
+        std::string incl = toFileName(s);
+        t.insertBeforeMarker("include_end", "#include \"" + incl + "\"");
     }
     return true;
 }
@@ -258,10 +259,15 @@ bool JsonGenerator::createOutput() {
 
     std::map<std::string, FTemplate>::iterator i = outputTemplates.begin();
     for(; i != outputTemplates.end(); ++i) {
-        std::string fName = i->first + ".hpp"; //::TODO:: convention (.h, .hpp, ...)
+        std::string fName = toFileName(i->first);
         writeContent(fName, i->second.getContent());
     }
     return true;
+}
+
+std::string JsonGenerator::toFileName(const std::string & s) {
+    std::string lowercaseName = boost::to_lower_copy(s);
+    return lowercaseName + ".hpp"; //::TODO:: convention (.h, .hpp, ...)
 }
 
 }

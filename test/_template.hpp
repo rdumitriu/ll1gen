@@ -50,7 +50,11 @@ std::ostream& operator<< (std::ostream& __stream, const BeanTest& __bean) {
 }
 
 std::istream& operator>> (std::istream& __stream, BeanTest& __bean) {
-    ll1gen::json::lookUpAndEat(__stream, "{");
+    char __startObjectMrk = ll1gen::json::lookUpAndEat(__stream, "{n");
+    if(__startObjectMrk == 'n') {
+        ll1gen::json::lookUpTokenRemainder(__stream, __startObjectMrk, "null");
+        return __stream;
+    }
     for(unsigned int __i = 0; __i < 3; ++__i) {
         ll1gen::json::lookUpAndEat(__stream, "\"");
         std::string __propertyName = ll1gen::json::lookUp(__stream, "\"");
@@ -62,7 +66,7 @@ std::istream& operator>> (std::istream& __stream, BeanTest& __bean) {
             __bean.p_s_1 = ll1gen::json::lookUp(__stream, "\"");
         }
         else
-        if(__propertyName == "d") {
+        if(__propertyName == "d" && !ll1gen::json::lookUpNull(__stream)) {
             __stream >> __bean.p_d_2;
         }
         else

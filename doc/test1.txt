@@ -1,0 +1,8 @@
+
+namespace helloworld
+
+class HelloBean
+  fname  string 
+  lname  string 
+  age    unsigned int
+

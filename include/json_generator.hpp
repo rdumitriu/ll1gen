@@ -40,6 +40,8 @@ private:
     bool createImportList(FTemplate & t);
 
     bool createFullFieldConstructor(FTemplate & t, BeanClazzSpecification & bcs);
+
+    std::string toFileName(const std::string & s);
 };
 
 }
