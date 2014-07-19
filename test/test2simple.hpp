@@ -125,8 +125,8 @@ std::istream& operator>> (std::istream& __stream, Test2Simple& __bean) {
         //ll1gen::field_istream_begin
 
             if(__propertyName == "optionalName") {
+        __bean._optionalName = std::make_shared<std::string>();
         if(!ll1gen::json::lookUpNull(__stream)) {
-            __bean._optionalName = std::make_shared<std::string>();
             ll1gen::json::parseString(__stream, *(__bean._optionalName));
         } else {
             __bean._optionalName.reset();
@@ -142,8 +142,8 @@ else
 
 else
     if(__propertyName == "isReallyBool") {
+        __bean._isReallyBool = std::make_shared<bool>();
         if(!ll1gen::json::lookUpNull(__stream)) {
-            __bean._isReallyBool = std::make_shared<bool>();
             ll1gen::json::parseBool(__stream, *(__bean._isReallyBool));
         } else {
             __bean._isReallyBool.reset();

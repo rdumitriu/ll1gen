@@ -13,6 +13,7 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
+#include <vector>
 #include <memory>
 
 namespace ll1gen { namespace json {
@@ -185,6 +186,7 @@ std::string lookUp(std::istream& stream, const std::string & ends) {
 }
 
 bool parseString(std::istream& stream, std::string & s) {
+    s.clear();
     char c = ll1gen::json::lookUpAndEat(stream, "\"n");
     if(c == 'n') {
         lookUpTokenRemainder(stream, c, "null");
@@ -222,6 +224,25 @@ bool lookUpNull(std::istream& stream) {
         if(!isblank(c) && c != '\n' && c != '\r') {
             if(c == 'n') {
                 lookUpTokenRemainder(stream, c, "null");
+                return true;
+            } else {
+                stream.putback(c);
+                return false;
+            }
+        }
+    } while( 1 );
+    return false;
+}
+
+bool lookUpEmptyArray(std::istream& stream) {
+    char c = 0;
+    do {
+        c = stream.get();
+        if(stream.bad()) {
+            throw std::runtime_error("Encountered premature EOF");
+        }
+        if(!isblank(c) && c != '\n' && c != '\r') {
+            if(c == ']') {
                 return true;
             } else {
                 stream.putback(c);

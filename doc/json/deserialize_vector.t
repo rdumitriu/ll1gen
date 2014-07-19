@@ -1,8 +1,10 @@
     
     if(__propertyName == "$field_name$") {
+        __bean.$var_name$.clear();
         ll1gen::json::lookUpAndEat(__stream, "[");
+        if(!ll1gen::json::lookUpEmptyArray(__stream)) {
         while(1) {
-            $type$ __item;
+            $item_type$ __item;
             if(!ll1gen::json::lookUpNull(__stream)) {
                 __stream >> __item;
             } else {
@@ -11,5 +13,6 @@
             __bean.$var_name$.push_back(std::move(__item));
             char nextChar = ll1gen::json::lookUpAndEat(__stream, ",]");
             if(nextChar == ']') { break; }
+        }
         }
     }

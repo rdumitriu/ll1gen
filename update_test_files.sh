@@ -25,5 +25,8 @@ $INSTD/bin/ll1gen -h $INSTD -f doc/test2.txt -d $TMPD
 
 echo Copying hellobean ...
 cp $TMPD/hellobean.hpp test/
+echo Copying test2simple and test2multi ...
 cp $TMPD/test2simple.hpp test/
 cp $TMPD/test2multi.hpp test/
+
+echo Done.

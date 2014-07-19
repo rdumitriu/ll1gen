@@ -209,6 +209,7 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
     std::string fieldDeserializerTemplate = "de" + fieldSerializerTemplate;
     FTemplate stdDeserializer("", getTemplateContent(fieldDeserializerTemplate));
     stdDeserializer.replaceToken("type", typeDecl);
+    stdDeserializer.replaceToken("item_type", realType);
     stdDeserializer.replaceToken("field_name", fs.name);
     stdDeserializer.replaceToken("var_name", varName);
     t.insertBeforeMarker("field_istream_end", stdDeserializer.getContent());

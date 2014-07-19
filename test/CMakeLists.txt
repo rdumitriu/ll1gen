@@ -24,9 +24,9 @@ ADD_EXECUTABLE(test_2Simple test2simple.hpp test_2Simple.cpp)
 INCLUDE_DIRECTORIES ("../include")
 TARGET_LINK_LIBRARIES (test_2Simple  ${MLIB})
 
-#ADD_EXECUTABLE(test_2Multi test2multi.hpp test_2Multi.cpp)
-#INCLUDE_DIRECTORIES ("../include")
-#TARGET_LINK_LIBRARIES (test_2Multi  ${MLIB})
+ADD_EXECUTABLE(test_2Multi test2multi.hpp test_2Multi.cpp)
+INCLUDE_DIRECTORIES ("../include")
+TARGET_LINK_LIBRARIES (test_2Multi  ${MLIB})
 
 
 
@@ -45,7 +45,7 @@ SET_TESTS_PROPERTIES (test_2Simple1
                       PROPERTIES
                       FAIL_REGULAR_EXPRESSION "FAILED.*")
 
-#ADD_TEST(test_2Multi1 test_2Multi)
-#SET_TESTS_PROPERTIES (test_2Multi1
-#                      PROPERTIES
-#                      FAIL_REGULAR_EXPRESSION "FAILED.*")
+ADD_TEST(test_2Multi1 test_2Multi)
+SET_TESTS_PROPERTIES (test_2Multi1
+                      PROPERTIES
+                      FAIL_REGULAR_EXPRESSION "FAILED.*")
