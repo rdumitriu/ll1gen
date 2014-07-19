@@ -105,20 +105,24 @@ std::istream& operator>> (std::istream& __stream, HelloBean& __bean) {
 
             if(__propertyName == "fname") {
         if(!ll1gen::json::parseString(__stream, __bean._fname)) {
-            __bean._fname = "";
+            throw new std::runtime_error("JSON: null not supported for field fname (string). Check definition.");
         }
     }
 
 else
     if(__propertyName == "lname") {
         if(!ll1gen::json::parseString(__stream, __bean._lname)) {
-            __bean._lname = "";
+            throw new std::runtime_error("JSON: null not supported for field lname (string). Check definition.");
         }
     }
 
 else
-    if(__propertyName == "age" && !ll1gen::json::lookUpNull(__stream)) {
-        __stream >> __bean._age;
+    if(__propertyName == "age") {
+        if(!ll1gen::json::lookUpNull(__stream)) {
+            __stream >> __bean._age;
+        } else {
+            throw std::runtime_error("JSON: null not supported for field age. Check definition");
+        }
     }
 
 //ll1gen::field_istream_end

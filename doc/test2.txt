@@ -1,0 +1,16 @@
+
+namespace test
+
+class Test2Simple
+  optionalName 	* string 
+  isBool 	  bool
+  isReallyBool 	* bool
+  number	  int
+
+
+class Test2Multi
+  multiBool	+ bool
+  multiString	+ string
+  multiInt	+ int
+  multiObj	+ Test2Simple
+

@@ -90,9 +90,17 @@ INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/deserialize_string.t
 
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/serialize_ref_vector_bool.t
         DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/deserialize_ref_vector_bool.t
+        DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
+
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/serialize_ref_vector_string.t
         DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/deserialize_ref_vector_string.t
+        DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
+
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/serialize_ref_vector.t
+        DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/deserialize_ref_vector.t
         DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
 
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/serialize_sptr_bool.t

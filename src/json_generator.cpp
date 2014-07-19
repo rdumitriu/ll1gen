@@ -24,13 +24,13 @@ std::vector<std::string> JsonGenerator::expectedTemplates() {
     ret.push_back("deserialize_normal_field.t");
 
     ret.push_back("serialize_ref_vector.t"); //*
-//    ret.push_back("deserialize_ref_vector.t");
+    ret.push_back("deserialize_ref_vector.t");
 
     ret.push_back("serialize_ref_vector_string.t"); //*
-//    ret.push_back("deserialize_ref_vector_string.t");
+    ret.push_back("deserialize_ref_vector_string.t");
 
     ret.push_back("serialize_ref_vector_bool.t"); //*
-//    ret.push_back("deserialize_ref_vector_bool.t");
+    ret.push_back("deserialize_ref_vector_bool.t");
 
     ret.push_back("serialize_sptr_normal_field.t"); //*
     ret.push_back("deserialize_sptr_normal_field.t");

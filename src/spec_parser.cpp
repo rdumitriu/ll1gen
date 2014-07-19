@@ -8,6 +8,16 @@
 
 namespace ll1gen {
 
+std::vector<std::string> clearEmptyStrings(const std::vector<std::string> & strs) {
+    std::vector<std::string> ret;
+    for(const std::string & s : strs) {
+        if("" != s) {
+            ret.push_back(s);
+        }
+    }
+    return ret;
+}
+
 bool SpecificationParser::parse(std::istream & in) {
     std::string s;
     unsigned int line = 1;
@@ -83,6 +93,7 @@ bool SpecificationParser::processFieldDefinition(const std::string & s) {
         lastError = "Invalid field definition >>" + s + "<<";
         return false;
     }
+    strs = clearEmptyStrings(strs);
     //first string is the identifier, so:
     std::string ident = strs.at(0);
     if(!isIdentifier(ident)) {
