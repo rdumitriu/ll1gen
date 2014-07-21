@@ -52,9 +52,14 @@ int main(int argc, char* argv[]) {
         t2s2.optionalName() = std::make_shared<std::string>();
         *t2s2.optionalName() = "foo";
 
+        Test2Simple t2s3;
+        t2s3.isBool() = false;
+        t2s3.number() = 5;
+
         Test2Multi tm2;
         tm2.multiObj().push_back(t2s1);
         tm2.multiObj().push_back(t2s2);
+        tm2.multiObj().push_back(t2s3);
 
         ostringstream out2;
         out2 << tm2;
