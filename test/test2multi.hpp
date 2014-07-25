@@ -85,54 +85,23 @@ std::ostream& operator<< (std::ostream& __stream, const Test2Multi& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
-        __stream << "\"multiBool\":[";
-    if(!__bean._multiBool.empty()) {
-        for(unsigned int __index = 0; __index < __bean._multiBool.size() - 1; ++__index) {
-            bool __item = __bean._multiBool.at(__index);
-            __stream << (__item ? "true" : "false");
-            __stream << ",";
-        }
-        __stream << (__bean._multiBool.at(__bean._multiBool.size() - 1) ? "true" : "false");
-    }
-    __stream << "]";
+        __stream << "\"multiBool\":";
+    ll1gen::json::serializeVector(__stream, __bean._multiBool);
 
 
 __stream << ",";
-    __stream << "\"multiString\":[";
-    if(!__bean._multiString.empty()) {
-        for(unsigned int __index = 0; __index < __bean._multiString.size() - 1; ++__index) {
-            auto & __item = __bean._multiString.at(__index);
-            __stream << "\"" << ll1gen::json::encodeJsonString(__item) << "\"";
-            __stream << ",";
-        }
-        __stream << "\"" << ll1gen::json::encodeJsonString(__bean._multiString.at(__bean._multiString.size() - 1)) << "\"";
-    }
-    __stream << "]";
-
-__stream << ",";
-    __stream << "\"multiInt\":[";
-    if(!__bean._multiInt.empty()) {
-        for(unsigned int __index = 0; __index < __bean._multiInt.size() - 1; ++__index) {
-            auto & __item = __bean._multiInt.at(__index);
-            __stream << __item;
-            __stream << ",";
-        }
-        __stream << __bean._multiInt.at(__bean._multiInt.size() - 1);
-    }
-    __stream << "]";
+    __stream << "\"multiString\":";
+    ll1gen::json::serializeVector(__stream, __bean._multiString);
 
 
 __stream << ",";
-    __stream << "\"multiObj\":[";
-    if(!__bean._multiObj.empty()) {
-        for(unsigned int __index = 0; __index < __bean._multiObj.size() - 1; ++__index) {
-            auto & __item = __bean._multiObj.at(__index);
-            __stream << __item;
-            __stream << ",";
-        }
-        __stream << __bean._multiObj.at(__bean._multiObj.size() - 1);
-    }
-    __stream << "]";
+    __stream << "\"multiInt\":";
+    ll1gen::json::serializeVector(__stream, __bean._multiInt);
+
+
+__stream << ",";
+    __stream << "\"multiObj\":";
+    ll1gen::json::serializeVector(__stream, __bean._multiObj);
 
 
 //ll1gen::field_ostream_end
@@ -141,96 +110,44 @@ __stream << ",";
 }
 
 std::istream& operator>> (std::istream& __stream, Test2Multi& __bean) {
-    char __startObjectMrk = ll1gen::json::lookUpAndEat(__stream, "{n");
+    char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
-        ll1gen::json::lookUpTokenRemainder(__stream, __startObjectMrk, "null");
+        ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");
         return __stream;
     }
     for(unsigned int __i = 0; __i < 4; ++__i) {
-        ll1gen::json::lookUpAndEat(__stream, "\"");
-        std::string __propertyName = ll1gen::json::lookUp(__stream, "\"");
-        ll1gen::json::lookUpAndEat(__stream, ":");
+        ll1gen::json::detail::lookUpAndEat(__stream, "\"");
+        std::string __propertyName = ll1gen::json::detail::lookUp(__stream, "\"");
+        ll1gen::json::detail::lookUpAndEat(__stream, ":");
 
         //ll1gen::field_istream_begin
 
             
     if(__propertyName == "multiBool") {
-        __bean._multiBool.clear();
-        ll1gen::json::lookUpAndEat(__stream, "[");
-        if(!ll1gen::json::lookUpEmptyArray(__stream)) {
-        while(1) {
-            bool __item;
-            if(!ll1gen::json::parseBool(__stream, __item)) {
-                throw std::runtime_error("JSON: null is not supported for multiBool (vector/bool). Check definition.");
-            }
-            __bean._multiBool.push_back(__item);
-            char nextChar = ll1gen::json::lookUpAndEat(__stream, ",]");
-            if(nextChar == ']') { break; }
-        }
-        }
+        ll1gen::json::deserializeVector(__stream, __bean._multiBool);
     }
 
 else
     
     if(__propertyName == "multiString") {
-        __bean._multiString.clear();
-        ll1gen::json::lookUpAndEat(__stream, "[");
-        if(!ll1gen::json::lookUpEmptyArray(__stream)) {
-        while(1) {
-            std::string __item;
-            if(!ll1gen::json::parseString(__stream, __item)) {
-                throw new std::runtime_error("JSON: null not supported for field multiString (vector/string). Check definition.");
-            }
-            __bean._multiString.push_back(std::move(__item));
-            char nextChar = ll1gen::json::lookUpAndEat(__stream, ",]");
-            if(nextChar == ']') { break; }
-        }
-        }
+        ll1gen::json::deserializeVector(__stream, __bean._multiString);
     }
 
 else
     
     if(__propertyName == "multiInt") {
-        __bean._multiInt.clear();
-        ll1gen::json::lookUpAndEat(__stream, "[");
-        if(!ll1gen::json::lookUpEmptyArray(__stream)) {
-        while(1) {
-            int __item;
-            if(!ll1gen::json::lookUpNull(__stream)) {
-                __stream >> __item;
-            } else {
-                throw std::runtime_error("JSON: null not supported for field multiInt (vector). Check definition");
-            }
-            __bean._multiInt.push_back(std::move(__item));
-            char nextChar = ll1gen::json::lookUpAndEat(__stream, ",]");
-            if(nextChar == ']') { break; }
-        }
-        }
+        ll1gen::json::deserializeVector(__stream, __bean._multiInt);
     }
 
 else
     
     if(__propertyName == "multiObj") {
-        __bean._multiObj.clear();
-        ll1gen::json::lookUpAndEat(__stream, "[");
-        if(!ll1gen::json::lookUpEmptyArray(__stream)) {
-        while(1) {
-            Test2Simple __item;
-            if(!ll1gen::json::lookUpNull(__stream)) {
-                __stream >> __item;
-            } else {
-                throw std::runtime_error("JSON: null not supported for field multiObj (vector). Check definition");
-            }
-            __bean._multiObj.push_back(std::move(__item));
-            char nextChar = ll1gen::json::lookUpAndEat(__stream, ",]");
-            if(nextChar == ']') { break; }
-        }
-        }
+        ll1gen::json::deserializeVector(__stream, __bean._multiObj);
     }
 
 //ll1gen::field_istream_end
 
-        if('{' == ll1gen::json::lookUpAndEat(__stream, "},")) {
+        if('}' == ll1gen::json::detail::lookUpAndEat(__stream, "},")) {
             break;
         }
     }

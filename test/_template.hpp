@@ -39,7 +39,7 @@ private:
 std::ostream& operator<< (std::ostream& __stream, const BeanTest& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
-    __stream << "\"s\":\"" << ll1gen::json::encodeJsonString(__bean.p_s_1) << "\"";
+    __stream << "\"s\":\"" << ll1gen::json::detail::encodeJsonString(__bean.p_s_1) << "\"";
     __stream << ",";
     __stream << "\"d\":" << __bean.p_d_2;
     __stream << ",";
@@ -50,23 +50,23 @@ std::ostream& operator<< (std::ostream& __stream, const BeanTest& __bean) {
 }
 
 std::istream& operator>> (std::istream& __stream, BeanTest& __bean) {
-    char __startObjectMrk = ll1gen::json::lookUpAndEat(__stream, "{n");
+    char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
-        ll1gen::json::lookUpTokenRemainder(__stream, __startObjectMrk, "null");
+        ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");
         return __stream;
     }
     for(unsigned int __i = 0; __i < 3; ++__i) {
-        ll1gen::json::lookUpAndEat(__stream, "\"");
-        std::string __propertyName = ll1gen::json::lookUp(__stream, "\"");
-        ll1gen::json::lookUpAndEat(__stream, ":");
+        ll1gen::json::detail::lookUpAndEat(__stream, "\"");
+        std::string __propertyName = ll1gen::json::detail::lookUp(__stream, "\"");
+        ll1gen::json::detail::lookUpAndEat(__stream, ":");
 
         //ll1gen::field_istream_begin
         if(__propertyName == "s") {
-            ll1gen::json::lookUpAndEat(__stream, "\"");
-            __bean.p_s_1 = ll1gen::json::lookUp(__stream, "\"");
+            ll1gen::json::detail::lookUpAndEat(__stream, "\"");
+            __bean.p_s_1 = ll1gen::json::detail::lookUp(__stream, "\"");
         }
         else
-        if(__propertyName == "d" && !ll1gen::json::lookUpNull(__stream)) {
+        if(__propertyName == "d" && !ll1gen::json::detail::lookUpNull(__stream)) {
             __stream >> __bean.p_d_2;
         }
         else
@@ -74,7 +74,7 @@ std::istream& operator>> (std::istream& __stream, BeanTest& __bean) {
             __stream >> __bean.p_ui_3;
         }
         //ll1gen::field_istream_end
-        if('{' == ll1gen::json::lookUpAndEat(__stream, "},")) {
+        if('}' == ll1gen::json::detail::lookUpAndEat(__stream, "},")) {
             break;
         }
     }

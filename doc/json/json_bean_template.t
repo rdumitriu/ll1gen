@@ -50,21 +50,21 @@ std::ostream& operator<< (std::ostream& __stream, const $BeanName$& __bean) {
 }
 
 std::istream& operator>> (std::istream& __stream, $BeanName$& __bean) {
-    char __startObjectMrk = ll1gen::json::lookUpAndEat(__stream, "{n");
+    char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
-        ll1gen::json::lookUpTokenRemainder(__stream, __startObjectMrk, "null");
+        ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");
         return __stream;
     }
     for(unsigned int __i = 0; __i < $bean_number_of_fields$; ++__i) {
-        ll1gen::json::lookUpAndEat(__stream, "\"");
-        std::string __propertyName = ll1gen::json::lookUp(__stream, "\"");
-        ll1gen::json::lookUpAndEat(__stream, ":");
+        ll1gen::json::detail::lookUpAndEat(__stream, "\"");
+        std::string __propertyName = ll1gen::json::detail::lookUp(__stream, "\"");
+        ll1gen::json::detail::lookUpAndEat(__stream, ":");
 
         //ll1gen::field_istream_begin
 
         //ll1gen::field_istream_end
 
-        if('{' == ll1gen::json::lookUpAndEat(__stream, "},")) {
+        if('}' == ll1gen::json::detail::lookUpAndEat(__stream, "},")) {
             break;
         }
     }

@@ -85,7 +85,7 @@ std::ostream& operator<< (std::ostream& __stream, const Test2Simple& __bean) {
     //ll1gen::field_ostream_begin
 
         if(__bean._optionalName.get()) {
-        __stream << "\"optionalName\":" << "\"" << ll1gen::json::encodeJsonString(*(__bean._optionalName)) << "\"";
+        __stream << "\"optionalName\":" << "\"" << ll1gen::json::detail::encodeJsonString(*(__bean._optionalName)) << "\"";
     } else {
         __stream << "\"optionalName\": null";
     }
@@ -112,22 +112,22 @@ __stream << ",";
 }
 
 std::istream& operator>> (std::istream& __stream, Test2Simple& __bean) {
-    char __startObjectMrk = ll1gen::json::lookUpAndEat(__stream, "{n");
+    char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
-        ll1gen::json::lookUpTokenRemainder(__stream, __startObjectMrk, "null");
+        ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");
         return __stream;
     }
     for(unsigned int __i = 0; __i < 4; ++__i) {
-        ll1gen::json::lookUpAndEat(__stream, "\"");
-        std::string __propertyName = ll1gen::json::lookUp(__stream, "\"");
-        ll1gen::json::lookUpAndEat(__stream, ":");
+        ll1gen::json::detail::lookUpAndEat(__stream, "\"");
+        std::string __propertyName = ll1gen::json::detail::lookUp(__stream, "\"");
+        ll1gen::json::detail::lookUpAndEat(__stream, ":");
 
         //ll1gen::field_istream_begin
 
             if(__propertyName == "optionalName") {
         __bean._optionalName = std::make_shared<std::string>();
-        if(!ll1gen::json::lookUpNull(__stream)) {
-            ll1gen::json::parseString(__stream, *(__bean._optionalName));
+        if(!ll1gen::json::detail::lookUpNull(__stream)) {
+            ll1gen::json::detail::parseString(__stream, *(__bean._optionalName));
         } else {
             __bean._optionalName.reset();
         }
@@ -135,7 +135,7 @@ std::istream& operator>> (std::istream& __stream, Test2Simple& __bean) {
 
 else
     if(__propertyName == "isBool") {
-        if(!ll1gen::json::parseBool(__stream, __bean._isBool)) {
+        if(!ll1gen::json::detail::parseBool(__stream, __bean._isBool)) {
             throw std::runtime_error("JSON: null is not supported for isBool (bool). Check definition.");
         }
     }
@@ -143,8 +143,8 @@ else
 else
     if(__propertyName == "isReallyBool") {
         __bean._isReallyBool = std::make_shared<bool>();
-        if(!ll1gen::json::lookUpNull(__stream)) {
-            ll1gen::json::parseBool(__stream, *(__bean._isReallyBool));
+        if(!ll1gen::json::detail::lookUpNull(__stream)) {
+            ll1gen::json::detail::parseBool(__stream, *(__bean._isReallyBool));
         } else {
             __bean._isReallyBool.reset();
         }
@@ -152,7 +152,7 @@ else
 
 else
     if(__propertyName == "number") {
-        if(!ll1gen::json::lookUpNull(__stream)) {
+        if(!ll1gen::json::detail::lookUpNull(__stream)) {
             __stream >> __bean._number;
         } else {
             throw std::runtime_error("JSON: null not supported for field number. Check definition");
@@ -161,7 +161,7 @@ else
 
 //ll1gen::field_istream_end
 
-        if('{' == ll1gen::json::lookUpAndEat(__stream, "},")) {
+        if('}' == ll1gen::json::detail::lookUpAndEat(__stream, "},")) {
             break;
         }
     }

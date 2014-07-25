@@ -74,11 +74,11 @@ std::ostream& operator<< (std::ostream& __stream, const HelloBean& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
-        __stream << "\"fname\":\"" << ll1gen::json::encodeJsonString(__bean._fname) << "\"";
+        __stream << "\"fname\":\"" << ll1gen::json::detail::encodeJsonString(__bean._fname) << "\"";
 
 
 __stream << ",";
-    __stream << "\"lname\":\"" << ll1gen::json::encodeJsonString(__bean._lname) << "\"";
+    __stream << "\"lname\":\"" << ll1gen::json::detail::encodeJsonString(__bean._lname) << "\"";
 
 
 __stream << ",";
@@ -91,34 +91,34 @@ __stream << ",";
 }
 
 std::istream& operator>> (std::istream& __stream, HelloBean& __bean) {
-    char __startObjectMrk = ll1gen::json::lookUpAndEat(__stream, "{n");
+    char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
-        ll1gen::json::lookUpTokenRemainder(__stream, __startObjectMrk, "null");
+        ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");
         return __stream;
     }
     for(unsigned int __i = 0; __i < 3; ++__i) {
-        ll1gen::json::lookUpAndEat(__stream, "\"");
-        std::string __propertyName = ll1gen::json::lookUp(__stream, "\"");
-        ll1gen::json::lookUpAndEat(__stream, ":");
+        ll1gen::json::detail::lookUpAndEat(__stream, "\"");
+        std::string __propertyName = ll1gen::json::detail::lookUp(__stream, "\"");
+        ll1gen::json::detail::lookUpAndEat(__stream, ":");
 
         //ll1gen::field_istream_begin
 
             if(__propertyName == "fname") {
-        if(!ll1gen::json::parseString(__stream, __bean._fname)) {
+        if(!ll1gen::json::detail::parseString(__stream, __bean._fname)) {
             throw new std::runtime_error("JSON: null not supported for field fname (string). Check definition.");
         }
     }
 
 else
     if(__propertyName == "lname") {
-        if(!ll1gen::json::parseString(__stream, __bean._lname)) {
+        if(!ll1gen::json::detail::parseString(__stream, __bean._lname)) {
             throw new std::runtime_error("JSON: null not supported for field lname (string). Check definition.");
         }
     }
 
 else
     if(__propertyName == "age") {
-        if(!ll1gen::json::lookUpNull(__stream)) {
+        if(!ll1gen::json::detail::lookUpNull(__stream)) {
             __stream >> __bean._age;
         } else {
             throw std::runtime_error("JSON: null not supported for field age. Check definition");
@@ -127,7 +127,7 @@ else
 
 //ll1gen::field_istream_end
 
-        if('{' == ll1gen::json::lookUpAndEat(__stream, "},")) {
+        if('}' == ll1gen::json::detail::lookUpAndEat(__stream, "},")) {
             break;
         }
     }
