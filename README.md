@@ -9,66 +9,70 @@ Implementation: RFC 4627, only objs and vectors can be roots.
 Usage is very simple: 
   1. Write a spec file for your beans
   2. Run ll1gen over them
-  <LL1GENHOME>/bin/ll1gen -h <LL1GENHOME> -f <SPECFILE> -d <DESTINATIONDIR>
+  LL1GENHOME/bin/ll1gen -h LL1GENHOME -f SPECFILE -d DESTINATIONDIR
   This will generate the classes.
   3. Use them in your code using usual stream operators '<<' '>>'
 
-Specification file
-======
+## Specification file ##
+
 A spec file is a text file with the following content:
 
-namespace test
-namespace nested
-namespace detail
+  namespace test  
+  namespace nested  
+  namespace detail  
 
-// this will generate namespace test { namespace nested { namespace detail {
+  // this will generate namespace test { namespace nested { namespace detail {  
 
-//Simple bean definition
-class PreviouslyDefinedBean
-  funny_name	string
-  not_suitable	bool
+  //Simple bean definition    
 
-//next, the class definition, something like:
-class ClassName
-  optionalName 	* string 
-  mandatoryName   string 
-  boolValue 	  bool
-  optionalBV    * bool
-  a_number	  int
-  a_number	  unsigned int
-  vectorBool	+ bool
-  vectorString	+ string
-  vectorNmbs	+ double
-  vectorObj	+ PreviouslyDefinedBean
-  boolVec       +* bool
-  stringVec     +* string
-  intVec        *+ int
-  objVec        *+ PreviouslyDefinedBean
+  class PreviouslyDefinedBean  
+    funny_name	string  
+    not_suitable	bool  
+      
+      
+  //next, the class definition, something like:
 
-//end
+  class ClassName  
+    optionalName 	* string  
+    mandatoryName   string  
+    boolValue 	  bool  
+    optionalBV    * bool  
+    a_number	  int  
+    a_number	  unsigned int  
+    vectorBool	+ bool  
+    vectorString	+ string  
+    vectorNmbs	+ double  
+    vectorObj	+ PreviouslyDefinedBean  
+    boolVec       +* bool  
+    stringVec     +* string  
+    intVec        *+ int  
+    objVec        *+ PreviouslyDefinedBean  
+  
+  //end of spec file
 
 
-Fields marked with '*' have the capability to treat nulls. 
-Fields marked with '+' are vectors. 
-Fields marked with both are vectors with null capabilities.
+Fields marked with '*' have the capability to treat nulls.  
+Fields marked with '+' are vectors.   
+Fields marked with both are vectors with null capabilities.  
 
-Usage
-======
+## Usage ##
+
 After you generate the bean .hpp file, all you have to do is to include and use it:
 
-#include "classname.hpp"
+  #include "classname.hpp"  
 
-.....
+  .....  
 
-ClassName cn;
+  ClassName cn;  
 
-in >> cn;
-out << cn;
+  in >> cn;  
 
-What's next?
-======
+  out << cn;  
 
-While this looks like it is working, this little piece of software is still in its infancy. Use it on your own risk.
+
+## What's next? ##
+
+While this looks like it is working fine, this little piece of software is still in its infancy. Use it on your own risk.
 
 1. Tests. More tests.
 2. Removing some idiotic code (hurry) & create routines for some other duplicated code
