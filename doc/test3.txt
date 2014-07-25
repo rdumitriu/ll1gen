@@ -1,0 +1,14 @@
+
+namespace test
+
+class TestPerson
+  name 	 string 
+  age 	 unsigned int
+
+
+class TestNEVecs
+  boolVec	+* bool
+  stringVec	+* string
+  intVec	*+ int
+  objVec	*+ TestPerson
+
