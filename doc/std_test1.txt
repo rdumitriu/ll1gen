@@ -1,0 +1,30 @@
+
+namespace test
+namespace glossary
+
+class GlossaryDefinition
+  para string
+  GlossSeeAlso + string
+
+class GlossaryEntry
+  ID string
+  SortAs string
+  GlossTerm string
+  Acronym string
+  Abbrev string
+  GlossDef GlossaryDefinition
+  GlossSee string
+
+class GlossaryList
+  GlossEntry GlossaryEntry
+
+class GlossaryDiv
+  title string
+  GlossList GlossaryList
+
+class Glossary
+  title string
+  GlossDiv GlossaryDiv
+
+class GlossaryRoot
+  glossary Glossary

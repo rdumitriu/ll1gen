@@ -28,6 +28,10 @@ ADD_EXECUTABLE(test_2Multi test2multi.hpp test_2Multi.cpp)
 INCLUDE_DIRECTORIES ("../include")
 TARGET_LINK_LIBRARIES (test_2Multi  ${MLIB})
 
+ADD_EXECUTABLE(test_stdex1 test_stdex1.cpp)
+INCLUDE_DIRECTORIES ("../include")
+TARGET_LINK_LIBRARIES (test_stdex1  ${MLIB})
+
 
 
 ADD_TEST(testspecp1 testspecp ${CMAKE_CURRENT_SOURCE_DIR}/good.desc)
@@ -47,5 +51,11 @@ SET_TESTS_PROPERTIES (test_2Simple1
 
 ADD_TEST(test_2Multi1 test_2Multi)
 SET_TESTS_PROPERTIES (test_2Multi1
+                      PROPERTIES
+                      FAIL_REGULAR_EXPRESSION "FAILED.*")
+
+
+ADD_TEST(test_stdex1t test_stdex1 ${CMAKE_CURRENT_SOURCE_DIR}/)
+SET_TESTS_PROPERTIES (test_stdex1t
                       PROPERTIES
                       FAIL_REGULAR_EXPRESSION "FAILED.*")

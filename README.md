@@ -13,6 +13,17 @@ Usage is very simple:
   This will generate the classes.
   3. Use them in your code using usual stream operators '<<' '>>'
 
+##Rationale##
+
+I was looking for a JSON library that was:
+1. Reasonably fast, and with a low memory consumption
+2. Multi-thread safe
+3. Streamable objects
+4. Safe to use: maintained, etc.
+
+I couldn't find one, so I thought: I didn't like them anyway. 
+Most of them were using additional objects (Like JsonAttr, JsonObject, etc) instead of the object itself. So I decided to write a small JSON bean generator. It takes a definition of the bean and 'writes' JSON serializers and deserializers in .hpp files. Users will not copy data in their own business objects, but use the already generated beans for that. From this point of view, it should be pretty fast and memory friendly, although perf testing is out of my scope right now.
+
 ## Specification file ##
 
 A spec file is a text file with the following content:
@@ -56,6 +67,8 @@ Fields marked with '+' are vectors.
 Fields marked with both are vectors with null capabilities.  
 
 ## Usage ##
+
+Note: You have some tests in the tests directory. That should clarify things.
 
 After you generate the bean .hpp file, all you have to do is to include and use it:
 
