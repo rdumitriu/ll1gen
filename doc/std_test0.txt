@@ -1,0 +1,26 @@
+
+namespace test
+namespace gamer
+
+class Score
+  coins unsigned int
+  mana unsigned int
+
+class Weapon
+  name string
+  damage double
+
+class Gamer
+  name string
+  age unsigned int
+  weapon * Weapon
+  score Score
+
+#
+# Test: order doesn't matter
+#
+class GamerRel
+  gamer Gamer
+  enemyIds + unsigned int
+  enemyCoords + double
+  description string

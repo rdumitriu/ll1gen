@@ -16,13 +16,20 @@ Usage is very simple:
 ##Rationale##
 
 I was looking for a JSON library that was:
-1. Reasonably fast, and with a low memory consumption
-2. Multi-thread safe
-3. Streamable objects
-4. Safe to use: maintained, etc.
+1. Reasonably fast, and with a low memory consumption  
+2. Multi-thread safe  
+3. Streamable objects  
+4. Safe to use: maintained, etc.  
 
-I couldn't find one, so I thought: I didn't like them anyway. 
+I couldn't find one, so I thought: I didn't like them anyway.  
 Most of them were using additional objects (Like JsonAttr, JsonObject, etc) instead of the object itself. So I decided to write a small JSON bean generator. It takes a definition of the bean and 'writes' JSON serializers and deserializers in .hpp files. Users will not copy data in their own business objects, but use the already generated beans for that. From this point of view, it should be pretty fast and memory friendly, although perf testing is out of my scope right now.
+
+##Features##
+* No API to understand. JSON serialization/deserialization of the objects is natural.  
+* Header only, no dependencies  
+* Footprint is, I believe, pretty small since no special structs / classes are used. 
+ 
+
 
 ## Specification file ##
 
