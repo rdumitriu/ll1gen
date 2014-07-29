@@ -20,6 +20,11 @@ ADD_EXECUTABLE(test_stdex1 test_stdex1.cpp)
 INCLUDE_DIRECTORIES ("../include")
 TARGET_LINK_LIBRARIES (test_stdex1  ${MLIB})
 
+ADD_EXECUTABLE(test_stdex2 test_stdex2.cpp)
+INCLUDE_DIRECTORIES ("../include")
+TARGET_LINK_LIBRARIES (test_stdex2  ${MLIB})
+
+
 ADD_EXECUTABLE(test_template test_template.cpp)
 INCLUDE_DIRECTORIES ("../include")
 TARGET_LINK_LIBRARIES (test_template  ${MLIB})
@@ -51,6 +56,10 @@ SET_TESTS_PROPERTIES (test_stdex1t
                       PROPERTIES
                       FAIL_REGULAR_EXPRESSION "FAILED.*")
 
+ADD_TEST(test_stdex2t test_stdex2 ${CMAKE_CURRENT_SOURCE_DIR}/)
+SET_TESTS_PROPERTIES (test_stdex2t
+                      PROPERTIES
+                      FAIL_REGULAR_EXPRESSION "FAILED.*")
 
 ADD_TEST(testspecp1 testspecp ${CMAKE_CURRENT_SOURCE_DIR}/good.desc)
 SET_TESTS_PROPERTIES (testspecp1

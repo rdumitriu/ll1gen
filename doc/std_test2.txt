@@ -1,0 +1,14 @@
+
+namespace test
+namespace menu
+
+class MenuItem
+  id string
+  label string
+
+class Menu
+  header string
+  items *+ MenuItem
+
+class MenuRoot
+  menu Menu

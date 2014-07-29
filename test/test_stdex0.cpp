@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
     }
     fstream fin(path + "ex0.json");
     if(!fin) {
-        cout << "FAILED: bad file path:" << (path + "ex1.json") << endl;
+        cout << "FAILED: bad file path:" << (path + "ex0.json") << endl;
         return 1;
     }
     try {
