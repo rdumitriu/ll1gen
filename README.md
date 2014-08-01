@@ -4,7 +4,9 @@ ll1gen
 A bean generator with JSON deserializer / serializer capabilities built-in.
 In place deserialize (i.e. you do not create other structs / classes). 
 
-Implementation: RFC 4627, only objs and vectors can be roots.
+Implementation: RFC 4627, only objs and vectors can be roots.  
+
+Build is based on cmake so you should know how to deal with it.  
 
 Usage is very simple: 
   1. Write a spec file for your beans
@@ -15,7 +17,7 @@ Usage is very simple:
 
 ##Rationale##
 
-I was looking for a JSON library that was:
+I was looking for a JSON library that was:  
 1. Reasonably fast, and with a low memory consumption  
 2. Multi-thread safe  
 3. Streamable objects  
@@ -92,10 +94,8 @@ After you generate the bean .hpp file, all you have to do is to include and use 
 
 ## What's next? ##
 
-While this looks like it is working fine, this little piece of software is still in its infancy. Use it on your own risk.
-
-1. Tests. More tests.
-2. Removing some idiotic code (hurry) & create routines for some other duplicated code
-3. Documentation ... (always a pleasure)
+1. Review generated code
+2. Documentation ... (always a pleasure). Add example code on how to parse arrays.
+3. Check it on Windows systems ... although it should be fine.
 
 No pretty printing will be added. Use an editor that knows how to format JSON
