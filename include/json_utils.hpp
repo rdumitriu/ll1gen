@@ -20,6 +20,7 @@ namespace ll1gen { namespace json {
 
 namespace detail {
 
+inline
 void encodeJsonString(const std::string & orig, std::string & final) {
     char * c = const_cast<char *>(orig.c_str());
     while(*c) {
@@ -62,12 +63,14 @@ void encodeJsonString(const std::string & orig, std::string & final) {
     }
 }
 
+inline
 std::string encodeJsonString(const std::string & orig) {
     std::string final;
     encodeJsonString(orig, final);
     return final;
 }
 
+inline
 char lookUpAndEat(std::istream& stream, const std::string & ends) {
     bool found = false;
     char c = 0;
@@ -89,6 +92,7 @@ char lookUpAndEat(std::istream& stream, const std::string & ends) {
     return c;
 }
 
+inline
 void lookUpTokenRemainder(std::istream& stream, char start, const std::string & token) {
     if(token.at(0) != start) {
         std::ostringstream msg;
@@ -111,6 +115,7 @@ void lookUpTokenRemainder(std::istream& stream, char start, const std::string & 
     }
 }
 
+inline
 std::string lookUp(std::istream& stream, const std::string & ends) {
     bool found = false;
     int state = 0;
@@ -187,6 +192,7 @@ std::string lookUp(std::istream& stream, const std::string & ends) {
     return ret;
 }
 
+inline
 bool parseString(std::istream& stream, std::string & s) {
     s.clear();
     char c = lookUpAndEat(stream, "\"n");
@@ -198,6 +204,7 @@ bool parseString(std::istream& stream, std::string & s) {
     return true;
 }
 
+inline
 bool parseBool(std::istream& stream, bool & b) {
     char c = lookUpAndEat(stream, "ntf");
     switch(c) {
@@ -216,6 +223,7 @@ bool parseBool(std::istream& stream, bool & b) {
     throw std::runtime_error("Bad boolean representation.");
 }
 
+inline
 bool lookUpNull(std::istream& stream) {
     char c = 0;
     do {
@@ -236,6 +244,7 @@ bool lookUpNull(std::istream& stream) {
     return false;
 }
 
+inline
 bool lookUpEmptyArray(std::istream& stream) {
     char c = 0;
     do {
@@ -257,6 +266,7 @@ bool lookUpEmptyArray(std::istream& stream) {
 
 } /*namespace detail */
 
+inline
 void serializeVector(std::ostream &stream, const std::vector<std::string> &v) {
     stream << "[";
     if(!v.empty()) {
@@ -269,6 +279,7 @@ void serializeVector(std::ostream &stream, const std::vector<std::string> &v) {
     stream << "]";
 }
 
+inline
 void deserializeVector(std::istream & stream, std::vector<std::string> &v) {
     v.clear();
     ll1gen::json::detail::lookUpAndEat(stream, "[");
@@ -285,6 +296,7 @@ void deserializeVector(std::istream & stream, std::vector<std::string> &v) {
     }
 }
 
+inline
 void serializeVector(std::ostream &stream, const std::vector<bool> &v) {
     stream << "[";
     if(!v.empty()) {
@@ -296,6 +308,7 @@ void serializeVector(std::ostream &stream, const std::vector<bool> &v) {
     stream << "]";
 }
 
+inline
 void deserializeVector(std::istream &stream, std::vector<bool> &v) {
     v.clear();
     ll1gen::json::detail::lookUpAndEat(stream, "[");
@@ -313,6 +326,7 @@ void deserializeVector(std::istream &stream, std::vector<bool> &v) {
 }
 
 template <typename T>
+inline
 void serializeVector(std::ostream & stream, const std::vector<T> & v) {
     stream << "[";
     if(!v.empty()) {
@@ -327,6 +341,7 @@ void serializeVector(std::ostream & stream, const std::vector<T> & v) {
 }
 
 template <typename T>
+inline
 void deserializeVector(std::istream & stream, std::vector<T> & v) {
     v.clear();
     ll1gen::json::detail::lookUpAndEat(stream, "[");
@@ -345,6 +360,7 @@ void deserializeVector(std::istream & stream, std::vector<T> & v) {
     }
 }
 
+inline
 void serializeRefVector(std::ostream &stream, const std::vector<std::shared_ptr<std::string>> &v) {
     stream << "[";
     if(!v.empty()) {
@@ -367,6 +383,7 @@ void serializeRefVector(std::ostream &stream, const std::vector<std::shared_ptr<
     stream << "]";
 }
 
+inline
 void deserializeRefVector(std::istream &stream, std::vector<std::shared_ptr<std::string>> &v) {
     v.clear();
     ll1gen::json::detail::lookUpAndEat(stream, "[");
@@ -385,7 +402,7 @@ void deserializeRefVector(std::istream &stream, std::vector<std::shared_ptr<std:
     }
 }
 
-
+inline
 void serializeRefVector(std::ostream &stream, const std::vector<std::shared_ptr<bool>> &v) {
     stream << "[";
     if(!v.empty()) {
@@ -408,6 +425,7 @@ void serializeRefVector(std::ostream &stream, const std::vector<std::shared_ptr<
     stream << "]";
 }
 
+inline
 void deserializeRefVector(std::istream & stream, std::vector<std::shared_ptr<bool>> & v) {
     v.clear();
     ll1gen::json::detail::lookUpAndEat(stream, "[");
@@ -427,6 +445,7 @@ void deserializeRefVector(std::istream & stream, std::vector<std::shared_ptr<boo
 }
 
 template <typename T>
+inline
 void serializeRefVector(std::ostream & stream, const std::vector<std::shared_ptr<T>> & v) {
     stream << "[";
     if(!v.empty()) {
@@ -450,6 +469,7 @@ void serializeRefVector(std::ostream & stream, const std::vector<std::shared_ptr
 }
 
 template <typename T>
+inline
 void deserializeRefVector(std::istream & stream, std::vector<std::shared_ptr<T>> & v) {
     v.clear();
     ll1gen::json::detail::lookUpAndEat(stream, "[");
