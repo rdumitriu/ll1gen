@@ -6,28 +6,36 @@ using namespace test;
 int main(int argc, char* argv[]) {
     TestNEVecs tnv;
     try {
-        tnv.boolVec().push_back(std::make_shared<bool>(true));
+        std::vector<std::shared_ptr<bool> > bools;
+        bools.push_back(std::make_shared<bool>(true));
         std::shared_ptr<bool> p_nb;
-        tnv.boolVec().push_back(p_nb);
-        tnv.boolVec().push_back(std::make_shared<bool>(false));
+        bools.push_back(p_nb);
+        bools.push_back(std::make_shared<bool>(false));
+        tnv.setBoolVec(bools);
 
-        tnv.intVec().push_back(std::make_shared<int>(1));
+        std::vector<std::shared_ptr<int> > ints;
+        ints.push_back(std::make_shared<int>(1));
         std::shared_ptr<int> p_ni;
-        tnv.intVec().push_back(p_ni);
-        tnv.intVec().push_back(std::make_shared<int>(3));
+        ints.push_back(p_ni);
+        ints.push_back(std::make_shared<int>(3));
+        tnv.setIntVec(ints);
 
-        tnv.stringVec().push_back(std::make_shared<std::string>("whatever"));
+        std::vector<std::shared_ptr<std::string> > strings;
+        strings.push_back(std::make_shared<std::string>("whatever"));
         std::shared_ptr<std::string> p_ns;
-        tnv.stringVec().push_back(p_ns);
-        tnv.stringVec().push_back(std::make_shared<std::string>("anyhow"));
+        strings.push_back(p_ns);
+        strings.push_back(std::make_shared<std::string>("anyhow"));
+        tnv.setStringVec(strings);
 
 
+        std::vector<std::shared_ptr<TestPerson> > persons;
         std::shared_ptr<TestPerson> p_p = std::make_shared<TestPerson>();
-        p_p->name() = "N";
-        p_p->age() = 10;
-        tnv.objVec().push_back(p_p);
+        p_p->setName("N");
+        p_p->setAge(10);
+        persons.push_back(p_p);
         std::shared_ptr<TestPerson> p_np;
-        tnv.objVec().push_back(p_np);
+        persons.push_back(p_np);
+        tnv.setObjVec(persons);
 
         cout << "Round 1 serialize: " << tnv << endl;
         ostringstream out;

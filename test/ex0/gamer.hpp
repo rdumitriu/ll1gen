@@ -17,58 +17,89 @@ namespace test { namespace gamer {
 class Gamer {
 public:
     //ll1gen::constructor_begin
+    Gamer(
+    		    const std::string & __name
 
-    //ll1gen::constructor_end
+,
+     unsigned int  __age
+
+,
+     std::shared_ptr<Weapon>   __weapon
+
+,
+    const Score & __score
+
+//ll1gen::constructor_param
+              ) :
+    		    _name(__name)
+
+,
+    _age(__age)
+
+,
+    _weapon(__weapon)
+
+,
+    _score(__score)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    Gamer(const Gamer & __bean) :
+    		    _name(__bean._name)
+
+,
+    _age(__bean._age)
+
+,
+    _weapon(__bean._weapon)
+
+,
+    _score(__bean._score)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     Gamer() {}
-    ~Gamer() {}
+    virtual ~Gamer() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    std::string get_name() const { return _name; }
+    const std::string & getName() const { return _name; }
 
-    void set_name( const std::string & __val) { _name = __val; }
-
-
-
-    unsigned int get_age() const { return _age; }
-
-    void set_age(  unsigned int  __val) { _age = __val; }
+    void setName( const std::string & __val) { _name = __val; }
 
 
 
-    std::shared_ptr<Weapon>  get_weapon() const { return _weapon; }
+    const unsigned int & getAge() const { return _age; }
 
-    void set_weapon(  std::shared_ptr<Weapon>   __val) { _weapon = __val; }
+    void setAge(  unsigned int  __val) { _age = __val; }
 
 
 
-    Score get_score() const { return _score; }
+    const std::shared_ptr<Weapon>  & getWeapon() const { return _weapon; }
 
-    void set_score( const Score & __val) { _score = __val; }
+    void setWeapon(  std::shared_ptr<Weapon>   __val) { _weapon = __val; }
+
+
+
+    const Score & getScore() const { return _score; }
+
+    void setScore( const Score & __val) { _score = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        std::string & name() { return _name; }
-
-
-    unsigned int & age() { return _age; }
-
-
-    std::shared_ptr<Weapon>  & weapon() { return _weapon; }
-
-
-    Score & score() { return _score; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    Gamer & operator = (const Gamer & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const Gamer& __bean);
     friend std::istream& operator>> (std::istream& __stream, Gamer& __bean);

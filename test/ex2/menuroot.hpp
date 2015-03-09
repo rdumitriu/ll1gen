@@ -16,31 +16,44 @@ namespace test { namespace menu {
 class MenuRoot {
 public:
     //ll1gen::constructor_begin
+    MenuRoot(
+    		    const Menu & __menu
 
-    //ll1gen::constructor_end
+//ll1gen::constructor_param
+              ) :
+    		    _menu(__menu)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    MenuRoot(const MenuRoot & __bean) :
+    		    _menu(__bean._menu)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     MenuRoot() {}
-    ~MenuRoot() {}
+    virtual ~MenuRoot() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    Menu get_menu() const { return _menu; }
+    const Menu & getMenu() const { return _menu; }
 
-    void set_menu( const Menu & __val) { _menu = __val; }
+    void setMenu( const Menu & __val) { _menu = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        Menu & menu() { return _menu; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    MenuRoot & operator = (const MenuRoot & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const MenuRoot& __bean);
     friend std::istream& operator>> (std::istream& __stream, MenuRoot& __bean);

@@ -15,40 +15,59 @@ namespace test { namespace menu {
 class MenuItem {
 public:
     //ll1gen::constructor_begin
+    MenuItem(
+    		    const std::string & __id
 
-    //ll1gen::constructor_end
+,
+    const std::string & __label
+
+//ll1gen::constructor_param
+              ) :
+    		    _id(__id)
+
+,
+    _label(__label)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    MenuItem(const MenuItem & __bean) :
+    		    _id(__bean._id)
+
+,
+    _label(__bean._label)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     MenuItem() {}
-    ~MenuItem() {}
+    virtual ~MenuItem() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    std::string get_id() const { return _id; }
+    const std::string & getId() const { return _id; }
 
-    void set_id( const std::string & __val) { _id = __val; }
+    void setId( const std::string & __val) { _id = __val; }
 
 
 
-    std::string get_label() const { return _label; }
+    const std::string & getLabel() const { return _label; }
 
-    void set_label( const std::string & __val) { _label = __val; }
+    void setLabel( const std::string & __val) { _label = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        std::string & id() { return _id; }
-
-
-    std::string & label() { return _label; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    MenuItem & operator = (const MenuItem & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const MenuItem& __bean);
     friend std::istream& operator>> (std::istream& __stream, MenuItem& __bean);

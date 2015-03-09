@@ -15,40 +15,59 @@ namespace test { namespace gamer {
 class Weapon {
 public:
     //ll1gen::constructor_begin
+    Weapon(
+    		    const std::string & __name
 
-    //ll1gen::constructor_end
+,
+     double  __damage
+
+//ll1gen::constructor_param
+              ) :
+    		    _name(__name)
+
+,
+    _damage(__damage)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    Weapon(const Weapon & __bean) :
+    		    _name(__bean._name)
+
+,
+    _damage(__bean._damage)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     Weapon() {}
-    ~Weapon() {}
+    virtual ~Weapon() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    std::string get_name() const { return _name; }
+    const std::string & getName() const { return _name; }
 
-    void set_name( const std::string & __val) { _name = __val; }
+    void setName( const std::string & __val) { _name = __val; }
 
 
 
-    double get_damage() const { return _damage; }
+    const double & getDamage() const { return _damage; }
 
-    void set_damage(  double  __val) { _damage = __val; }
+    void setDamage(  double  __val) { _damage = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        std::string & name() { return _name; }
-
-
-    double & damage() { return _damage; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    Weapon & operator = (const Weapon & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const Weapon& __bean);
     friend std::istream& operator>> (std::istream& __stream, Weapon& __bean);

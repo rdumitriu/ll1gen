@@ -15,40 +15,59 @@ namespace test { namespace gamer {
 class Score {
 public:
     //ll1gen::constructor_begin
+    Score(
+    		     unsigned int  __coins
 
-    //ll1gen::constructor_end
+,
+     unsigned int  __mana
+
+//ll1gen::constructor_param
+              ) :
+    		    _coins(__coins)
+
+,
+    _mana(__mana)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    Score(const Score & __bean) :
+    		    _coins(__bean._coins)
+
+,
+    _mana(__bean._mana)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     Score() {}
-    ~Score() {}
+    virtual ~Score() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    unsigned int get_coins() const { return _coins; }
+    const unsigned int & getCoins() const { return _coins; }
 
-    void set_coins(  unsigned int  __val) { _coins = __val; }
+    void setCoins(  unsigned int  __val) { _coins = __val; }
 
 
 
-    unsigned int get_mana() const { return _mana; }
+    const unsigned int & getMana() const { return _mana; }
 
-    void set_mana(  unsigned int  __val) { _mana = __val; }
+    void setMana(  unsigned int  __val) { _mana = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        unsigned int & coins() { return _coins; }
-
-
-    unsigned int & mana() { return _mana; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    Score & operator = (const Score & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const Score& __bean);
     friend std::istream& operator>> (std::istream& __stream, Score& __bean);

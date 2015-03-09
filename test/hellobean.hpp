@@ -15,49 +15,74 @@ namespace helloworld {
 class HelloBean {
 public:
     //ll1gen::constructor_begin
+    HelloBean(
+    		    const std::string & __fname
 
-    //ll1gen::constructor_end
+,
+    const std::string & __lname
+
+,
+     unsigned int  __age
+
+//ll1gen::constructor_param
+              ) :
+    		    _fname(__fname)
+
+,
+    _lname(__lname)
+
+,
+    _age(__age)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    HelloBean(const HelloBean & __bean) :
+    		    _fname(__bean._fname)
+
+,
+    _lname(__bean._lname)
+
+,
+    _age(__bean._age)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     HelloBean() {}
-    ~HelloBean() {}
+    virtual ~HelloBean() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    std::string get_fname() const { return _fname; }
+    const std::string & getFname() const { return _fname; }
 
-    void set_fname( const std::string & __val) { _fname = __val; }
-
-
-
-    std::string get_lname() const { return _lname; }
-
-    void set_lname( const std::string & __val) { _lname = __val; }
+    void setFname( const std::string & __val) { _fname = __val; }
 
 
 
-    unsigned int get_age() const { return _age; }
+    const std::string & getLname() const { return _lname; }
 
-    void set_age(  unsigned int  __val) { _age = __val; }
+    void setLname( const std::string & __val) { _lname = __val; }
+
+
+
+    const unsigned int & getAge() const { return _age; }
+
+    void setAge(  unsigned int  __val) { _age = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        std::string & fname() { return _fname; }
-
-
-    std::string & lname() { return _lname; }
-
-
-    unsigned int & age() { return _age; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    HelloBean & operator = (const HelloBean & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const HelloBean& __bean);
     friend std::istream& operator>> (std::istream& __stream, HelloBean& __bean);

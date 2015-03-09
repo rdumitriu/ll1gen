@@ -66,10 +66,17 @@ INSTALL(FILES ${CMAKE_SOURCE_DIR}/include/json_utils.hpp
         DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/json_bean_template.t
         DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
-INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/ref_getter_content.t
-        DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
+#INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/ref_getter_content.t
+#        DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/std_getter_content.t
         DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/std_constructor_param.t
+        DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/std_constructor_assign.t
+        DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/std_copyconstructor_assign.t
+        DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
+
 
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/serialize_bool.t
         DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")

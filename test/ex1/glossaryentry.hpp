@@ -16,85 +16,134 @@ namespace test { namespace glossary {
 class GlossaryEntry {
 public:
     //ll1gen::constructor_begin
+    GlossaryEntry(
+    		    const std::string & __ID
 
-    //ll1gen::constructor_end
+,
+    const std::string & __SortAs
+
+,
+    const std::string & __GlossTerm
+
+,
+    const std::string & __Acronym
+
+,
+    const std::string & __Abbrev
+
+,
+    const GlossaryDefinition & __GlossDef
+
+,
+    const std::string & __GlossSee
+
+//ll1gen::constructor_param
+              ) :
+    		    _ID(__ID)
+
+,
+    _SortAs(__SortAs)
+
+,
+    _GlossTerm(__GlossTerm)
+
+,
+    _Acronym(__Acronym)
+
+,
+    _Abbrev(__Abbrev)
+
+,
+    _GlossDef(__GlossDef)
+
+,
+    _GlossSee(__GlossSee)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    GlossaryEntry(const GlossaryEntry & __bean) :
+    		    _ID(__bean._ID)
+
+,
+    _SortAs(__bean._SortAs)
+
+,
+    _GlossTerm(__bean._GlossTerm)
+
+,
+    _Acronym(__bean._Acronym)
+
+,
+    _Abbrev(__bean._Abbrev)
+
+,
+    _GlossDef(__bean._GlossDef)
+
+,
+    _GlossSee(__bean._GlossSee)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     GlossaryEntry() {}
-    ~GlossaryEntry() {}
+    virtual ~GlossaryEntry() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    std::string get_ID() const { return _ID; }
+    const std::string & getID() const { return _ID; }
 
-    void set_ID( const std::string & __val) { _ID = __val; }
-
-
-
-    std::string get_SortAs() const { return _SortAs; }
-
-    void set_SortAs( const std::string & __val) { _SortAs = __val; }
+    void setID( const std::string & __val) { _ID = __val; }
 
 
 
-    std::string get_GlossTerm() const { return _GlossTerm; }
+    const std::string & getSortAs() const { return _SortAs; }
 
-    void set_GlossTerm( const std::string & __val) { _GlossTerm = __val; }
-
-
-
-    std::string get_Acronym() const { return _Acronym; }
-
-    void set_Acronym( const std::string & __val) { _Acronym = __val; }
+    void setSortAs( const std::string & __val) { _SortAs = __val; }
 
 
 
-    std::string get_Abbrev() const { return _Abbrev; }
+    const std::string & getGlossTerm() const { return _GlossTerm; }
 
-    void set_Abbrev( const std::string & __val) { _Abbrev = __val; }
-
-
-
-    GlossaryDefinition get_GlossDef() const { return _GlossDef; }
-
-    void set_GlossDef( const GlossaryDefinition & __val) { _GlossDef = __val; }
+    void setGlossTerm( const std::string & __val) { _GlossTerm = __val; }
 
 
 
-    std::string get_GlossSee() const { return _GlossSee; }
+    const std::string & getAcronym() const { return _Acronym; }
 
-    void set_GlossSee( const std::string & __val) { _GlossSee = __val; }
+    void setAcronym( const std::string & __val) { _Acronym = __val; }
+
+
+
+    const std::string & getAbbrev() const { return _Abbrev; }
+
+    void setAbbrev( const std::string & __val) { _Abbrev = __val; }
+
+
+
+    const GlossaryDefinition & getGlossDef() const { return _GlossDef; }
+
+    void setGlossDef( const GlossaryDefinition & __val) { _GlossDef = __val; }
+
+
+
+    const std::string & getGlossSee() const { return _GlossSee; }
+
+    void setGlossSee( const std::string & __val) { _GlossSee = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        std::string & ID() { return _ID; }
-
-
-    std::string & SortAs() { return _SortAs; }
-
-
-    std::string & GlossTerm() { return _GlossTerm; }
-
-
-    std::string & Acronym() { return _Acronym; }
-
-
-    std::string & Abbrev() { return _Abbrev; }
-
-
-    GlossaryDefinition & GlossDef() { return _GlossDef; }
-
-
-    std::string & GlossSee() { return _GlossSee; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    GlossaryEntry & operator = (const GlossaryEntry & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const GlossaryEntry& __bean);
     friend std::istream& operator>> (std::istream& __stream, GlossaryEntry& __bean);

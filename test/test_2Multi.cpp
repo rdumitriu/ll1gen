@@ -6,17 +6,23 @@ using namespace test;
 int main(int argc, char* argv[]) {
     Test2Multi tm;
     try {
-        tm.multiBool().push_back(true);
-        tm.multiBool().push_back(false);
-        tm.multiBool().push_back(true);
+        std::vector<bool> bools;
+        bools.push_back(true);
+        bools.push_back(false);
+        bools.push_back(true);
+        tm.setMultiBool(bools);
 
-        tm.multiInt().push_back(1);
-        tm.multiInt().push_back(2);
-        tm.multiInt().push_back(3);
-        tm.multiInt().push_back(4);
+        std::vector<int> ints;
+        ints.push_back(1);
+        ints.push_back(2);
+        ints.push_back(3);
+        ints.push_back(4);
+        tm.setMultiInt(ints);
 
-        tm.multiString().push_back("aa");
-        tm.multiString().push_back("bb");
+        std::vector<std::string> strings;
+        strings.push_back("aa");
+        strings.push_back("bb");
+        tm.setMultiString(strings);
 
         cout << "Round 1 serialize: " << tm << endl;
         ostringstream out;
@@ -37,29 +43,27 @@ int main(int argc, char* argv[]) {
 
 
         Test2Simple t2s1;
-        t2s1.isBool() = true;
-        t2s1.isReallyBool() = std::make_shared<bool>();
-        *(t2s1.isReallyBool()) = false;
-        t2s1.number() = 3;
-        t2s1.optionalName() = std::make_shared<std::string>();
-        *t2s1.optionalName() = "goo";
+        t2s1.setIsBool(true);
+        t2s1.setIsReallyBool(std::make_shared<bool>(false));
+        t2s1.setNumber(3);
+        t2s1.setOptionalName(std::make_shared<std::string>("goo"));
 
         Test2Simple t2s2;
-        t2s2.isBool() = false;
-        t2s2.isReallyBool() = std::make_shared<bool>();
-        *(t2s2.isReallyBool()) = true;
-        t2s2.number() = 4;
-        t2s2.optionalName() = std::make_shared<std::string>();
-        *t2s2.optionalName() = "foo";
+        t2s2.setIsBool(false);
+        t2s2.setIsReallyBool(std::make_shared<bool>(true));
+        t2s2.setNumber(4);
+        t2s2.setOptionalName(std::make_shared<std::string>("foo"));
 
         Test2Simple t2s3;
-        t2s3.isBool() = false;
-        t2s3.number() = 5;
+        t2s3.setIsBool(false);
+        t2s3.setNumber(5);
 
         Test2Multi tm2;
-        tm2.multiObj().push_back(t2s1);
-        tm2.multiObj().push_back(t2s2);
-        tm2.multiObj().push_back(t2s3);
+        std::vector<Test2Simple> objs;
+        objs.push_back(t2s1);
+        objs.push_back(t2s2);
+        objs.push_back(t2s3);
+        tm2.setMultiObj(objs);
 
         ostringstream out2;
         out2 << tm2;

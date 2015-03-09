@@ -15,40 +15,59 @@ namespace test {
 class TestPerson {
 public:
     //ll1gen::constructor_begin
+    TestPerson(
+    		    const std::string & __name
 
-    //ll1gen::constructor_end
+,
+     unsigned int  __age
+
+//ll1gen::constructor_param
+              ) :
+    		    _name(__name)
+
+,
+    _age(__age)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    TestPerson(const TestPerson & __bean) :
+    		    _name(__bean._name)
+
+,
+    _age(__bean._age)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     TestPerson() {}
-    ~TestPerson() {}
+    virtual ~TestPerson() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    std::string get_name() const { return _name; }
+    const std::string & getName() const { return _name; }
 
-    void set_name( const std::string & __val) { _name = __val; }
+    void setName( const std::string & __val) { _name = __val; }
 
 
 
-    unsigned int get_age() const { return _age; }
+    const unsigned int & getAge() const { return _age; }
 
-    void set_age(  unsigned int  __val) { _age = __val; }
+    void setAge(  unsigned int  __val) { _age = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        std::string & name() { return _name; }
-
-
-    unsigned int & age() { return _age; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    TestPerson & operator = (const TestPerson & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const TestPerson& __bean);
     friend std::istream& operator>> (std::istream& __stream, TestPerson& __bean);

@@ -16,58 +16,89 @@ namespace test {
 class Test2Multi {
 public:
     //ll1gen::constructor_begin
+    Test2Multi(
+    		    const std::vector<bool>  & __multiBool
 
-    //ll1gen::constructor_end
+,
+    const std::vector<std::string>  & __multiString
+
+,
+    const std::vector<int>  & __multiInt
+
+,
+    const std::vector<Test2Simple>  & __multiObj
+
+//ll1gen::constructor_param
+              ) :
+    		    _multiBool(__multiBool)
+
+,
+    _multiString(__multiString)
+
+,
+    _multiInt(__multiInt)
+
+,
+    _multiObj(__multiObj)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    Test2Multi(const Test2Multi & __bean) :
+    		    _multiBool(__bean._multiBool)
+
+,
+    _multiString(__bean._multiString)
+
+,
+    _multiInt(__bean._multiInt)
+
+,
+    _multiObj(__bean._multiObj)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     Test2Multi() {}
-    ~Test2Multi() {}
+    virtual ~Test2Multi() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    std::vector<bool>  get_multiBool() const { return _multiBool; }
+    const std::vector<bool>  & getMultiBool() const { return _multiBool; }
 
-    void set_multiBool( const std::vector<bool>  & __val) { _multiBool = __val; }
-
-
-
-    std::vector<std::string>  get_multiString() const { return _multiString; }
-
-    void set_multiString( const std::vector<std::string>  & __val) { _multiString = __val; }
+    void setMultiBool( const std::vector<bool>  & __val) { _multiBool = __val; }
 
 
 
-    std::vector<int>  get_multiInt() const { return _multiInt; }
+    const std::vector<std::string>  & getMultiString() const { return _multiString; }
 
-    void set_multiInt( const std::vector<int>  & __val) { _multiInt = __val; }
+    void setMultiString( const std::vector<std::string>  & __val) { _multiString = __val; }
 
 
 
-    std::vector<Test2Simple>  get_multiObj() const { return _multiObj; }
+    const std::vector<int>  & getMultiInt() const { return _multiInt; }
 
-    void set_multiObj( const std::vector<Test2Simple>  & __val) { _multiObj = __val; }
+    void setMultiInt( const std::vector<int>  & __val) { _multiInt = __val; }
+
+
+
+    const std::vector<Test2Simple>  & getMultiObj() const { return _multiObj; }
+
+    void setMultiObj( const std::vector<Test2Simple>  & __val) { _multiObj = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        std::vector<bool>  & multiBool() { return _multiBool; }
-
-
-    std::vector<std::string>  & multiString() { return _multiString; }
-
-
-    std::vector<int>  & multiInt() { return _multiInt; }
-
-
-    std::vector<Test2Simple>  & multiObj() { return _multiObj; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    Test2Multi & operator = (const Test2Multi & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const Test2Multi& __bean);
     friend std::istream& operator>> (std::istream& __stream, Test2Multi& __bean);

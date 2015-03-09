@@ -15,58 +15,89 @@ namespace test {
 class Test2Simple {
 public:
     //ll1gen::constructor_begin
+    Test2Simple(
+    		     std::shared_ptr<std::string>   __optionalName
 
-    //ll1gen::constructor_end
+,
+     bool  __isBool
+
+,
+     std::shared_ptr<bool>   __isReallyBool
+
+,
+     int  __number
+
+//ll1gen::constructor_param
+              ) :
+    		    _optionalName(__optionalName)
+
+,
+    _isBool(__isBool)
+
+,
+    _isReallyBool(__isReallyBool)
+
+,
+    _number(__number)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    Test2Simple(const Test2Simple & __bean) :
+    		    _optionalName(__bean._optionalName)
+
+,
+    _isBool(__bean._isBool)
+
+,
+    _isReallyBool(__bean._isReallyBool)
+
+,
+    _number(__bean._number)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     Test2Simple() {}
-    ~Test2Simple() {}
+    virtual ~Test2Simple() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    std::shared_ptr<std::string>  get_optionalName() const { return _optionalName; }
+    const std::shared_ptr<std::string>  & getOptionalName() const { return _optionalName; }
 
-    void set_optionalName(  std::shared_ptr<std::string>   __val) { _optionalName = __val; }
-
-
-
-    bool get_isBool() const { return _isBool; }
-
-    void set_isBool(  bool  __val) { _isBool = __val; }
+    void setOptionalName(  std::shared_ptr<std::string>   __val) { _optionalName = __val; }
 
 
 
-    std::shared_ptr<bool>  get_isReallyBool() const { return _isReallyBool; }
+    const bool & getIsBool() const { return _isBool; }
 
-    void set_isReallyBool(  std::shared_ptr<bool>   __val) { _isReallyBool = __val; }
+    void setIsBool(  bool  __val) { _isBool = __val; }
 
 
 
-    int get_number() const { return _number; }
+    const std::shared_ptr<bool>  & getIsReallyBool() const { return _isReallyBool; }
 
-    void set_number(  int  __val) { _number = __val; }
+    void setIsReallyBool(  std::shared_ptr<bool>   __val) { _isReallyBool = __val; }
+
+
+
+    const int & getNumber() const { return _number; }
+
+    void setNumber(  int  __val) { _number = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        std::shared_ptr<std::string>  & optionalName() { return _optionalName; }
-
-
-    bool & isBool() { return _isBool; }
-
-
-    std::shared_ptr<bool>  & isReallyBool() { return _isReallyBool; }
-
-
-    int & number() { return _number; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    Test2Simple & operator = (const Test2Simple & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const Test2Simple& __bean);
     friend std::istream& operator>> (std::istream& __stream, Test2Simple& __bean);

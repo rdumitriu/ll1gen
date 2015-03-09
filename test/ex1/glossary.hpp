@@ -16,40 +16,59 @@ namespace test { namespace glossary {
 class Glossary {
 public:
     //ll1gen::constructor_begin
+    Glossary(
+    		    const std::string & __title
 
-    //ll1gen::constructor_end
+,
+    const GlossaryDiv & __GlossDiv
+
+//ll1gen::constructor_param
+              ) :
+    		    _title(__title)
+
+,
+    _GlossDiv(__GlossDiv)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    Glossary(const Glossary & __bean) :
+    		    _title(__bean._title)
+
+,
+    _GlossDiv(__bean._GlossDiv)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     Glossary() {}
-    ~Glossary() {}
+    virtual ~Glossary() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    std::string get_title() const { return _title; }
+    const std::string & getTitle() const { return _title; }
 
-    void set_title( const std::string & __val) { _title = __val; }
+    void setTitle( const std::string & __val) { _title = __val; }
 
 
 
-    GlossaryDiv get_GlossDiv() const { return _GlossDiv; }
+    const GlossaryDiv & getGlossDiv() const { return _GlossDiv; }
 
-    void set_GlossDiv( const GlossaryDiv & __val) { _GlossDiv = __val; }
+    void setGlossDiv( const GlossaryDiv & __val) { _GlossDiv = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        std::string & title() { return _title; }
-
-
-    GlossaryDiv & GlossDiv() { return _GlossDiv; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    Glossary & operator = (const Glossary & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const Glossary& __bean);
     friend std::istream& operator>> (std::istream& __stream, Glossary& __bean);

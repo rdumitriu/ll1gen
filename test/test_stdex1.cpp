@@ -30,37 +30,37 @@ int main(int argc, char* argv[]) {
         GlossaryRoot r;
         in >> r;
         //we know that we serialized and reparsed the object. Let's see how we are
-        if(r.glossary().title() != "example glossary") {
+        if(r.getGlossary().getTitle() != "example glossary") {
             cout << "FAILED: glossary.title" << endl;
         }
-        if(r.glossary().GlossDiv().title() != "S") {
+        if(r.getGlossary().getGlossDiv().getTitle() != "S") {
             cout << "FAILED: glossary.title.GlossDiv.title" << endl;
         }
-        if(r.glossary().GlossDiv().GlossList().GlossEntry().ID() != "SGML") {
+        if(r.getGlossary().getGlossDiv().getGlossList().getGlossEntry().getID() != "SGML") {
             cout << "FAILED: glossary.title.GlossDiv.GlossList.GlossEntry.ID" << endl;
         }
-        if(r.glossary().GlossDiv().GlossList().GlossEntry().SortAs() != "SGML") {
+        if(r.getGlossary().getGlossDiv().getGlossList().getGlossEntry().getSortAs() != "SGML") {
             cout << "FAILED: glossary.title.GlossDiv.GlossList.GlossEntry.SortAs" << endl;
         }
-        if(r.glossary().GlossDiv().GlossList().GlossEntry().Acronym() != "SGML") {
+        if(r.getGlossary().getGlossDiv().getGlossList().getGlossEntry().getAcronym() != "SGML") {
             cout << "FAILED: glossary.title.GlossDiv.GlossList.GlossEntry.Acronym" << endl;
         }
-        if(r.glossary().GlossDiv().GlossList().GlossEntry().Abbrev() != "ISO 8879:1986") {
+        if(r.getGlossary().getGlossDiv().getGlossList().getGlossEntry().getAbbrev() != "ISO 8879:1986") {
             cout << "FAILED: glossary.title.GlossDiv.GlossList.GlossEntry.Abbrev" << endl;
         }
-        if(r.glossary().GlossDiv().GlossList().GlossEntry().GlossTerm() != "Standard Generalized Markup Language") {
+        if(r.getGlossary().getGlossDiv().getGlossList().getGlossEntry().getGlossTerm() != "Standard Generalized Markup Language") {
             cout << "FAILED: glossary.title.GlossDiv.GlossList.GlossEntry.GlossTerm" << endl;
         }
-        if(r.glossary().GlossDiv().GlossList().GlossEntry().GlossSee() != "markup") {
+        if(r.getGlossary().getGlossDiv().getGlossList().getGlossEntry().getGlossSee() != "markup") {
             cout << "FAILED: glossary.title.GlossDiv.GlossList.GlossEntry.GlossTerm" << endl;
         }
-        if(r.glossary().GlossDiv().GlossList().GlossEntry().GlossDef().para() != "A meta-markup language, used to create markup languages such as DocBook.") {
+        if(r.getGlossary().getGlossDiv().getGlossList().getGlossEntry().getGlossDef().getPara() != "A meta-markup language, used to create markup languages such as DocBook.") {
             cout << "FAILED: glossary.title.GlossDiv.GlossList.GlossEntry.GlossDef.para" << endl;
         }
-        if(r.glossary().GlossDiv().GlossList().GlossEntry().GlossDef().GlossSeeAlso().at(0) != "GML") {
+        if(r.getGlossary().getGlossDiv().getGlossList().getGlossEntry().getGlossDef().getGlossSeeAlso().at(0) != "GML") {
             cout << "FAILED: glossary.title.GlossDiv.GlossList.GlossEntry.GlossDef.seealso(0)" << endl;
         }
-        if(r.glossary().GlossDiv().GlossList().GlossEntry().GlossDef().GlossSeeAlso().at(1) != "XML") {
+        if(r.getGlossary().getGlossDiv().getGlossList().getGlossEntry().getGlossDef().getGlossSeeAlso().at(1) != "XML") {
             cout << "FAILED: glossary.title.GlossDiv.GlossList.GlossEntry.GlossDef.seealso(1)" << endl;
         }
         cout << "End test" << endl;

@@ -16,58 +16,89 @@ namespace test { namespace gamer {
 class GamerRel {
 public:
     //ll1gen::constructor_begin
+    GamerRel(
+    		    const Gamer & __gamer
 
-    //ll1gen::constructor_end
+,
+    const std::vector<unsigned int>  & __enemyIds
+
+,
+    const std::vector<double>  & __enemyCoords
+
+,
+    const std::string & __description
+
+//ll1gen::constructor_param
+              ) :
+    		    _gamer(__gamer)
+
+,
+    _enemyIds(__enemyIds)
+
+,
+    _enemyCoords(__enemyCoords)
+
+,
+    _description(__description)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    GamerRel(const GamerRel & __bean) :
+    		    _gamer(__bean._gamer)
+
+,
+    _enemyIds(__bean._enemyIds)
+
+,
+    _enemyCoords(__bean._enemyCoords)
+
+,
+    _description(__bean._description)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     GamerRel() {}
-    ~GamerRel() {}
+    virtual ~GamerRel() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    Gamer get_gamer() const { return _gamer; }
+    const Gamer & getGamer() const { return _gamer; }
 
-    void set_gamer( const Gamer & __val) { _gamer = __val; }
-
-
-
-    std::vector<unsigned int>  get_enemyIds() const { return _enemyIds; }
-
-    void set_enemyIds( const std::vector<unsigned int>  & __val) { _enemyIds = __val; }
+    void setGamer( const Gamer & __val) { _gamer = __val; }
 
 
 
-    std::vector<double>  get_enemyCoords() const { return _enemyCoords; }
+    const std::vector<unsigned int>  & getEnemyIds() const { return _enemyIds; }
 
-    void set_enemyCoords( const std::vector<double>  & __val) { _enemyCoords = __val; }
+    void setEnemyIds( const std::vector<unsigned int>  & __val) { _enemyIds = __val; }
 
 
 
-    std::string get_description() const { return _description; }
+    const std::vector<double>  & getEnemyCoords() const { return _enemyCoords; }
 
-    void set_description( const std::string & __val) { _description = __val; }
+    void setEnemyCoords( const std::vector<double>  & __val) { _enemyCoords = __val; }
+
+
+
+    const std::string & getDescription() const { return _description; }
+
+    void setDescription( const std::string & __val) { _description = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        Gamer & gamer() { return _gamer; }
-
-
-    std::vector<unsigned int>  & enemyIds() { return _enemyIds; }
-
-
-    std::vector<double>  & enemyCoords() { return _enemyCoords; }
-
-
-    std::string & description() { return _description; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    GamerRel & operator = (const GamerRel & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const GamerRel& __bean);
     friend std::istream& operator>> (std::istream& __stream, GamerRel& __bean);

@@ -17,8 +17,11 @@ std::vector<std::string> JsonGenerator::expectedTemplates() {
     std::vector<std::string> ret;
     ret.push_back("json_utils.hpp"); //*
     ret.push_back("json_bean_template.t"); //*
-    ret.push_back("ref_getter_content.t"); //*
+    //ret.push_back("ref_getter_content.t"); //*
     ret.push_back("std_getter_content.t"); //*
+    ret.push_back("std_constructor_param.t");
+    ret.push_back("std_constructor_assign.t");
+    ret.push_back("std_copyconstructor_assign.t");
 
     ret.push_back("serialize_normal_field.t"); //*
     ret.push_back("deserialize_normal_field.t");
@@ -109,8 +112,7 @@ bool JsonGenerator::processBeanFieldsSpecification(FTemplate & t, BeanClazzSpeci
         }
         i++;
     }
-    return createFullFieldConstructor(t, bcs) &&
-           createImportList(t);
+    return createImportList(t);
 }
 
 bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
@@ -176,23 +178,20 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
     }
     //1:: insert declaration
     t.insertBeforeMarker("field_decl_end", typeDecl + " " + varName + ";");
-    //2:: reference getter
-    FTemplate refGetterTemplate("", getTemplateContent("ref_getter_content.t"));
-    refGetterTemplate.replaceToken("type", typeDecl);
-    refGetterTemplate.replaceToken("field_name", fs.name);
-    refGetterTemplate.replaceToken("var_name", varName);
-    t.insertBeforeMarker("ref_getters_end", refGetterTemplate.getContent());
 
-    //3:: standard getter and setter
+    //2:: standard getter and setter
     FTemplate stdGetterTemplate("", getTemplateContent("std_getter_content.t"));
     stdGetterTemplate.replaceToken("type", typeDecl);
     stdGetterTemplate.replaceToken("field_name", fs.name);
     stdGetterTemplate.replaceToken("var_name", varName);
+    std::string uFieldName(fs.name);
+    uFieldName[0] = std::toupper(fs.name[0]);
+    stdGetterTemplate.replaceToken("u_field_name", uFieldName);
     stdGetterTemplate.replaceToken("type_pre_modifier", typeSetPredecl);
     stdGetterTemplate.replaceToken("type_post_modifier", typeSetPostdecl);
     t.insertBeforeMarker("getters_end", stdGetterTemplate.getContent());
 
-    //4::serializers
+    //3::serializers
     if(ndx > 0) {
         t.insertBeforeMarker("field_ostream_end", "__stream << \",\";");
     }
@@ -202,7 +201,7 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
     stdSerializer.replaceToken("var_name", varName);
     t.insertBeforeMarker("field_ostream_end", stdSerializer.getContent());
 
-    //5::deserializers
+    //3::deserializers
     if(ndx > 0) {
         t.insertBeforeMarker("field_istream_end", "else");
     }
@@ -214,6 +213,33 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
     stdDeserializer.replaceToken("var_name", varName);
     t.insertBeforeMarker("field_istream_end", stdDeserializer.getContent());
 
+    //4::standard constructor (param)
+    if(ndx > 0) {
+        t.insertBeforeMarker("constructor_param", ",");
+    }
+    FTemplate stdConstructorParam("", getTemplateContent("std_constructor_param.t"));
+    stdConstructorParam.replaceToken("type", typeDecl);
+    stdConstructorParam.replaceToken("var_name", varName);
+    stdConstructorParam.replaceToken("type_pre_modifier", typeSetPredecl);
+    stdConstructorParam.replaceToken("type_post_modifier", typeSetPostdecl);
+    t.insertBeforeMarker("constructor_param", stdConstructorParam.getContent());
+
+    //5:: standard constructor (assign)
+    if(ndx > 0) {
+        t.insertBeforeMarker("constructor_assign", ",");
+    }
+    FTemplate stdCConstructorAssign("", getTemplateContent("std_constructor_assign.t"));
+    stdCConstructorAssign.replaceToken("var_name", varName);
+    t.insertBeforeMarker("constructor_assign", stdCConstructorAssign.getContent());
+
+    //6:: copy constructor (assign)
+    if(ndx > 0) {
+        t.insertBeforeMarker("copy_constructor_assign", ",");
+    }
+    FTemplate stdCConstructorParam("", getTemplateContent("std_copyconstructor_assign.t"));
+    stdCConstructorParam.replaceToken("var_name", varName);
+    t.insertBeforeMarker("copy_constructor_assign", stdCConstructorParam.getContent());
+
     return true;
 }
 
@@ -222,10 +248,6 @@ bool JsonGenerator::createImportList(FTemplate & t) {
         std::string incl = toFileName(s);
         t.insertBeforeMarker("include_end", "#include \"" + incl + "\"");
     }
-    return true;
-}
-
-bool JsonGenerator::createFullFieldConstructor(FTemplate & t, BeanClazzSpecification & bcs) {
     return true;
 }
 

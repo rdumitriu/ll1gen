@@ -15,40 +15,59 @@ namespace test { namespace glossary {
 class GlossaryDefinition {
 public:
     //ll1gen::constructor_begin
+    GlossaryDefinition(
+    		    const std::string & __para
 
-    //ll1gen::constructor_end
+,
+    const std::vector<std::string>  & __GlossSeeAlso
+
+//ll1gen::constructor_param
+              ) :
+    		    _para(__para)
+
+,
+    _GlossSeeAlso(__GlossSeeAlso)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    GlossaryDefinition(const GlossaryDefinition & __bean) :
+    		    _para(__bean._para)
+
+,
+    _GlossSeeAlso(__bean._GlossSeeAlso)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     GlossaryDefinition() {}
-    ~GlossaryDefinition() {}
+    virtual ~GlossaryDefinition() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    std::string get_para() const { return _para; }
+    const std::string & getPara() const { return _para; }
 
-    void set_para( const std::string & __val) { _para = __val; }
+    void setPara( const std::string & __val) { _para = __val; }
 
 
 
-    std::vector<std::string>  get_GlossSeeAlso() const { return _GlossSeeAlso; }
+    const std::vector<std::string>  & getGlossSeeAlso() const { return _GlossSeeAlso; }
 
-    void set_GlossSeeAlso( const std::vector<std::string>  & __val) { _GlossSeeAlso = __val; }
+    void setGlossSeeAlso( const std::vector<std::string>  & __val) { _GlossSeeAlso = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        std::string & para() { return _para; }
-
-
-    std::vector<std::string>  & GlossSeeAlso() { return _GlossSeeAlso; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    GlossaryDefinition & operator = (const GlossaryDefinition & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const GlossaryDefinition& __bean);
     friend std::istream& operator>> (std::istream& __stream, GlossaryDefinition& __bean);

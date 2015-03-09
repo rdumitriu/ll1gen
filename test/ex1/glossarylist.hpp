@@ -16,31 +16,44 @@ namespace test { namespace glossary {
 class GlossaryList {
 public:
     //ll1gen::constructor_begin
+    GlossaryList(
+    		    const GlossaryEntry & __GlossEntry
 
-    //ll1gen::constructor_end
+//ll1gen::constructor_param
+              ) :
+    		    _GlossEntry(__GlossEntry)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    GlossaryList(const GlossaryList & __bean) :
+    		    _GlossEntry(__bean._GlossEntry)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     GlossaryList() {}
-    ~GlossaryList() {}
+    virtual ~GlossaryList() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    GlossaryEntry get_GlossEntry() const { return _GlossEntry; }
+    const GlossaryEntry & getGlossEntry() const { return _GlossEntry; }
 
-    void set_GlossEntry( const GlossaryEntry & __val) { _GlossEntry = __val; }
+    void setGlossEntry( const GlossaryEntry & __val) { _GlossEntry = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        GlossaryEntry & GlossEntry() { return _GlossEntry; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    GlossaryList & operator = (const GlossaryList & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const GlossaryList& __bean);
     friend std::istream& operator>> (std::istream& __stream, GlossaryList& __bean);

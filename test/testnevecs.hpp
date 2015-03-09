@@ -16,58 +16,89 @@ namespace test {
 class TestNEVecs {
 public:
     //ll1gen::constructor_begin
+    TestNEVecs(
+    		    const std::vector<std::shared_ptr<bool>> & __boolVec
 
-    //ll1gen::constructor_end
+,
+    const std::vector<std::shared_ptr<std::string>> & __stringVec
+
+,
+    const std::vector<std::shared_ptr<int>> & __intVec
+
+,
+    const std::vector<std::shared_ptr<TestPerson>> & __objVec
+
+//ll1gen::constructor_param
+              ) :
+    		    _boolVec(__boolVec)
+
+,
+    _stringVec(__stringVec)
+
+,
+    _intVec(__intVec)
+
+,
+    _objVec(__objVec)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    TestNEVecs(const TestNEVecs & __bean) :
+    		    _boolVec(__bean._boolVec)
+
+,
+    _stringVec(__bean._stringVec)
+
+,
+    _intVec(__bean._intVec)
+
+,
+    _objVec(__bean._objVec)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     TestNEVecs() {}
-    ~TestNEVecs() {}
+    virtual ~TestNEVecs() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    std::vector<std::shared_ptr<bool>> get_boolVec() const { return _boolVec; }
+    const std::vector<std::shared_ptr<bool>> & getBoolVec() const { return _boolVec; }
 
-    void set_boolVec( const std::vector<std::shared_ptr<bool>> & __val) { _boolVec = __val; }
-
-
-
-    std::vector<std::shared_ptr<std::string>> get_stringVec() const { return _stringVec; }
-
-    void set_stringVec( const std::vector<std::shared_ptr<std::string>> & __val) { _stringVec = __val; }
+    void setBoolVec( const std::vector<std::shared_ptr<bool>> & __val) { _boolVec = __val; }
 
 
 
-    std::vector<std::shared_ptr<int>> get_intVec() const { return _intVec; }
+    const std::vector<std::shared_ptr<std::string>> & getStringVec() const { return _stringVec; }
 
-    void set_intVec( const std::vector<std::shared_ptr<int>> & __val) { _intVec = __val; }
+    void setStringVec( const std::vector<std::shared_ptr<std::string>> & __val) { _stringVec = __val; }
 
 
 
-    std::vector<std::shared_ptr<TestPerson>> get_objVec() const { return _objVec; }
+    const std::vector<std::shared_ptr<int>> & getIntVec() const { return _intVec; }
 
-    void set_objVec( const std::vector<std::shared_ptr<TestPerson>> & __val) { _objVec = __val; }
+    void setIntVec( const std::vector<std::shared_ptr<int>> & __val) { _intVec = __val; }
+
+
+
+    const std::vector<std::shared_ptr<TestPerson>> & getObjVec() const { return _objVec; }
+
+    void setObjVec( const std::vector<std::shared_ptr<TestPerson>> & __val) { _objVec = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        std::vector<std::shared_ptr<bool>> & boolVec() { return _boolVec; }
-
-
-    std::vector<std::shared_ptr<std::string>> & stringVec() { return _stringVec; }
-
-
-    std::vector<std::shared_ptr<int>> & intVec() { return _intVec; }
-
-
-    std::vector<std::shared_ptr<TestPerson>> & objVec() { return _objVec; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    TestNEVecs & operator = (const TestNEVecs & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const TestNEVecs& __bean);
     friend std::istream& operator>> (std::istream& __stream, TestNEVecs& __bean);

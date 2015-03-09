@@ -15,22 +15,32 @@ $namespace_def_begin$
 class $BeanName$ {
 public:
     //ll1gen::constructor_begin
+    $BeanName$(
+    		//ll1gen::constructor_param
+              ) :
+    		//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
 
-    //ll1gen::constructor_end
+    //ll1gen::copy_constructor_begin
+    $BeanName$(const $BeanName$ & __bean) :
+    		//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     $BeanName$() {}
-    ~$BeanName$() {}
+    virtual ~$BeanName$() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-    //ll1gen::ref_getters_end
-#endif
+    $BeanName$ & operator = (const $BeanName$ & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const $BeanName$& __bean);
     friend std::istream& operator>> (std::istream& __stream, $BeanName$& __bean);

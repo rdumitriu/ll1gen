@@ -16,40 +16,59 @@ namespace test { namespace menu {
 class Menu {
 public:
     //ll1gen::constructor_begin
+    Menu(
+    		    const std::string & __header
 
-    //ll1gen::constructor_end
+,
+    const std::vector<std::shared_ptr<MenuItem>> & __items
+
+//ll1gen::constructor_param
+              ) :
+    		    _header(__header)
+
+,
+    _items(__items)
+
+//ll1gen::constructor_assign
+		{}
+    //ll1gen::constructor_begin
+
+    //ll1gen::copy_constructor_begin
+    Menu(const Menu & __bean) :
+    		    _header(__bean._header)
+
+,
+    _items(__bean._items)
+
+//ll1gen::copy_constructor_assign
+		{}
+    //ll1gen::copy_constructor_end
+
     Menu() {}
-    ~Menu() {}
+    virtual ~Menu() {}
 
-#ifndef LL1GEN_DISABLE_STANDARD_GETTERS
     //ll1gen::getters_begin
 
     
-    std::string get_header() const { return _header; }
+    const std::string & getHeader() const { return _header; }
 
-    void set_header( const std::string & __val) { _header = __val; }
+    void setHeader( const std::string & __val) { _header = __val; }
 
 
 
-    std::vector<std::shared_ptr<MenuItem>> get_items() const { return _items; }
+    const std::vector<std::shared_ptr<MenuItem>> & getItems() const { return _items; }
 
-    void set_items( const std::vector<std::shared_ptr<MenuItem>> & __val) { _items = __val; }
+    void setItems( const std::vector<std::shared_ptr<MenuItem>> & __val) { _items = __val; }
 
 
 //ll1gen::getters_end
-#endif
 
-#ifndef LL1GEN_DISABLE_REFERENCE_GETTERS
-    //ll1gen::ref_getters_begin
-
-        std::string & header() { return _header; }
-
-
-    std::vector<std::shared_ptr<MenuItem>> & items() { return _items; }
-
-
-//ll1gen::ref_getters_end
-#endif
+    Menu & operator = (const Menu & __bean) {
+        if(this != &__bean) {
+    		//ll1gen::opeq_end
+        }
+        return (*this);
+    }
 
     friend std::ostream& operator<< (std::ostream& __stream, const Menu& __bean);
     friend std::istream& operator>> (std::istream& __stream, Menu& __bean);

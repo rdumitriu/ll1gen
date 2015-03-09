@@ -30,25 +30,25 @@ int main(int argc, char* argv[]) {
         MenuRoot r;
         in >> r;
         //we know that we serialized and reparsed the object. Let's see how we are
-        if(r.menu().header() != "SVG Viewer") {
+        if(r.getMenu().getHeader() != "SVG Viewer") {
             cout << "FAILED: header" << endl;
         }
-        if(r.menu().items().size() != 22) {
+        if(r.getMenu().getItems().size() != 22) {
             cout << "FAILED: items size" << endl;
         }
-        if(r.menu().items()[0]->id() != "Open") {
+        if(r.getMenu().getItems()[0]->getId() != "Open") {
             cout << "FAILED: item zero id" << endl;
         }
-        if(r.menu().items()[0]->label() != "") {
+        if(r.getMenu().getItems()[0]->getLabel() != "") {
             cout << "FAILED: item zero label" << endl;
         }
-        if(r.menu().items()[1]->id() != "OpenNew") {
+        if(r.getMenu().getItems()[1]->getId() != "OpenNew") {
             cout << "FAILED: item 1 id" << endl;
         }
-        if(r.menu().items()[1]->label() != "Open New") {
+        if(r.getMenu().getItems()[1]->getLabel() != "Open New") {
             cout << "FAILED: item 1 label" << endl;
         }
-        if(r.menu().items()[2].get()) {
+        if(r.getMenu().getItems()[2].get()) {
             cout << "FAILED: item 2 not null" << endl;
         }
 
