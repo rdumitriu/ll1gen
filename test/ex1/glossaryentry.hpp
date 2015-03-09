@@ -140,7 +140,21 @@ public:
 
     GlossaryEntry & operator = (const GlossaryEntry & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_ID = __bean._ID;
+
+    this->_SortAs = __bean._SortAs;
+
+    this->_GlossTerm = __bean._GlossTerm;
+
+    this->_Acronym = __bean._Acronym;
+
+    this->_Abbrev = __bean._Abbrev;
+
+    this->_GlossDef = __bean._GlossDef;
+
+    this->_GlossSee = __bean._GlossSee;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

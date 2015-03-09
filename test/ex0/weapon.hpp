@@ -64,7 +64,11 @@ public:
 
     Weapon & operator = (const Weapon & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_name = __bean._name;
+
+    this->_damage = __bean._damage;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

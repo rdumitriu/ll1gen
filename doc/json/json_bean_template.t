@@ -37,7 +37,7 @@ public:
 
     $BeanName$ & operator = (const $BeanName$ & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		//ll1gen::opeq_assign
         }
         return (*this);
     }

@@ -50,7 +50,9 @@ public:
 
     MenuRoot & operator = (const MenuRoot & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_menu = __bean._menu;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

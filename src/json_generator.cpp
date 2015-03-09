@@ -22,6 +22,7 @@ std::vector<std::string> JsonGenerator::expectedTemplates() {
     ret.push_back("std_constructor_param.t");
     ret.push_back("std_constructor_assign.t");
     ret.push_back("std_copyconstructor_assign.t");
+    ret.push_back("std_opeq_assign.t");
 
     ret.push_back("serialize_normal_field.t"); //*
     ret.push_back("deserialize_normal_field.t");
@@ -179,6 +180,9 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
     //1:: insert declaration
     t.insertBeforeMarker("field_decl_end", typeDecl + " " + varName + ";");
 
+    //::TODO:: run templates better (declare the template and the possible separator
+    //::TODO:: then run it with all vars in place)
+
     //2:: standard getter and setter
     FTemplate stdGetterTemplate("", getTemplateContent("std_getter_content.t"));
     stdGetterTemplate.replaceToken("type", typeDecl);
@@ -239,6 +243,11 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
     FTemplate stdCConstructorParam("", getTemplateContent("std_copyconstructor_assign.t"));
     stdCConstructorParam.replaceToken("var_name", varName);
     t.insertBeforeMarker("copy_constructor_assign", stdCConstructorParam.getContent());
+
+    //7:: eq
+    FTemplate stdOpEQ("", getTemplateContent("std_opeq_assign.t"));
+    stdOpEQ.replaceToken("var_name", varName);
+    t.insertBeforeMarker("opeq_assign", stdOpEQ.getContent());
 
     return true;
 }

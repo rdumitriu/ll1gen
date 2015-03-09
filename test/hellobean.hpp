@@ -79,7 +79,13 @@ public:
 
     HelloBean & operator = (const HelloBean & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_fname = __bean._fname;
+
+    this->_lname = __bean._lname;
+
+    this->_age = __bean._age;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

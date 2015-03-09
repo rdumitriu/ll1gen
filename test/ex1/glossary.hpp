@@ -65,7 +65,11 @@ public:
 
     Glossary & operator = (const Glossary & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_title = __bean._title;
+
+    this->_GlossDiv = __bean._GlossDiv;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

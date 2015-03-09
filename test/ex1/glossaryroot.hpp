@@ -50,7 +50,9 @@ public:
 
     GlossaryRoot & operator = (const GlossaryRoot & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_glossary = __bean._glossary;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

@@ -95,7 +95,15 @@ public:
 
     Test2Multi & operator = (const Test2Multi & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_multiBool = __bean._multiBool;
+
+    this->_multiString = __bean._multiString;
+
+    this->_multiInt = __bean._multiInt;
+
+    this->_multiObj = __bean._multiObj;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

@@ -64,7 +64,11 @@ public:
 
     MenuItem & operator = (const MenuItem & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_id = __bean._id;
+
+    this->_label = __bean._label;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

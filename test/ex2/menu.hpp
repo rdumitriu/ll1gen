@@ -65,7 +65,11 @@ public:
 
     Menu & operator = (const Menu & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_header = __bean._header;
+
+    this->_items = __bean._items;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

@@ -95,7 +95,15 @@ public:
 
     GamerRel & operator = (const GamerRel & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_gamer = __bean._gamer;
+
+    this->_enemyIds = __bean._enemyIds;
+
+    this->_enemyCoords = __bean._enemyCoords;
+
+    this->_description = __bean._description;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

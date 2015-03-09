@@ -50,7 +50,9 @@ public:
 
     GlossaryList & operator = (const GlossaryList & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_GlossEntry = __bean._GlossEntry;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

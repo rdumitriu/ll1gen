@@ -64,7 +64,11 @@ public:
 
     Score & operator = (const Score & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_coins = __bean._coins;
+
+    this->_mana = __bean._mana;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

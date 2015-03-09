@@ -64,7 +64,11 @@ public:
 
     TestPerson & operator = (const TestPerson & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_name = __bean._name;
+
+    this->_age = __bean._age;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

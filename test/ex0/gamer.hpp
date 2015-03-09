@@ -96,7 +96,15 @@ public:
 
     Gamer & operator = (const Gamer & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_name = __bean._name;
+
+    this->_age = __bean._age;
+
+    this->_weapon = __bean._weapon;
+
+    this->_score = __bean._score;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

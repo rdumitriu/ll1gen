@@ -95,7 +95,15 @@ public:
 
     TestNEVecs & operator = (const TestNEVecs & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_boolVec = __bean._boolVec;
+
+    this->_stringVec = __bean._stringVec;
+
+    this->_intVec = __bean._intVec;
+
+    this->_objVec = __bean._objVec;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

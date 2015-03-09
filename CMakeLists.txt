@@ -76,7 +76,8 @@ INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/std_constructor_assign.t
         DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/std_copyconstructor_assign.t
         DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
-
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/std_opeq_assign.t
+        DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")
 
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/doc/json/serialize_bool.t
         DESTINATION "${LL1GEN_INSTALL_TMPL_JSON}")

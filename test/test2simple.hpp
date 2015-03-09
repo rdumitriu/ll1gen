@@ -94,7 +94,15 @@ public:
 
     Test2Simple & operator = (const Test2Simple & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_optionalName = __bean._optionalName;
+
+    this->_isBool = __bean._isBool;
+
+    this->_isReallyBool = __bean._isReallyBool;
+
+    this->_number = __bean._number;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }

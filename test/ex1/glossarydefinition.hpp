@@ -64,7 +64,11 @@ public:
 
     GlossaryDefinition & operator = (const GlossaryDefinition & __bean) {
         if(this != &__bean) {
-    		//ll1gen::opeq_end
+    		    this->_para = __bean._para;
+
+    this->_GlossSeeAlso = __bean._GlossSeeAlso;
+
+//ll1gen::opeq_assign
         }
         return (*this);
     }
