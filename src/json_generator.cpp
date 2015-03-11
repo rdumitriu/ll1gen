@@ -180,9 +180,6 @@ bool JsonGenerator::processFieldSpecification(unsigned int ndx, FTemplate & t,
     //1:: insert declaration
     t.insertBeforeMarker("field_decl_end", typeDecl + " " + varName + ";");
 
-    //::TODO:: run templates better (declare the template and the possible separator
-    //::TODO:: then run it with all vars in place)
-
     //2:: standard getter and setter
     FTemplate stdGetterTemplate("", getTemplateContent("std_getter_content.t"));
     stdGetterTemplate.replaceToken("type", typeDecl);

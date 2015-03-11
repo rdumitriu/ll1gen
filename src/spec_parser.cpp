@@ -101,10 +101,10 @@ bool SpecificationParser::processFieldDefinition(const std::string & s) {
         return false;
     }
     //second: type or flags ?
-    unsigned int concatFrom;
+    unsigned int concatFrom = 1; //no flags
     unsigned int flags = 0;
     std::string mod_or_type = strs.at(1);
-    if(mod_or_type == "*+" || mod_or_type == "+*" || mod_or_type == "*" || mod_or_type == "+") {
+    if(mod_or_type.length() > 0 && (mod_or_type.at(0) == '*' || mod_or_type.at(0) == '+')) {
         char * p = const_cast<char *>(mod_or_type.c_str());
         concatFrom = 2;
         while(*p) {
@@ -115,11 +115,12 @@ bool SpecificationParser::processFieldDefinition(const std::string & s) {
             case '+':
                 flags |= F_VECTOR;
                 break;
+            default:
+                lastError = "Invalid field modifier >>" + mod_or_type + "<< doesn't seem to be valid (+,*,+*)";
+                return false;
             }
             ++p;
         }
-    } else { //no flags
-        concatFrom = 1;
     }
     std::string thetype;
     for(unsigned int i = concatFrom; i < strs.size(); ++i) {
