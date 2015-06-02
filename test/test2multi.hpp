@@ -68,26 +68,34 @@ public:
     //ll1gen::getters_begin
 
     
+    inline
     const std::vector<bool>  & getMultiBool() const { return _multiBool; }
 
+    inline
     void setMultiBool( const std::vector<bool>  & __val) { _multiBool = __val; }
 
 
 
+    inline
     const std::vector<std::string>  & getMultiString() const { return _multiString; }
 
+    inline
     void setMultiString( const std::vector<std::string>  & __val) { _multiString = __val; }
 
 
 
+    inline
     const std::vector<int>  & getMultiInt() const { return _multiInt; }
 
+    inline
     void setMultiInt( const std::vector<int>  & __val) { _multiInt = __val; }
 
 
 
+    inline
     const std::vector<Test2Simple>  & getMultiObj() const { return _multiObj; }
 
+    inline
     void setMultiObj( const std::vector<Test2Simple>  & __val) { _multiObj = __val; }
 
 
@@ -120,7 +128,7 @@ std::vector<Test2Simple>  _multiObj;
 //ll1gen::field_decl_end
 };
 
-std::ostream& operator<< (std::ostream& __stream, const Test2Multi& __bean) {
+inline std::ostream& operator<< (std::ostream& __stream, const Test2Multi& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
@@ -148,7 +156,7 @@ __stream << ",";
     return __stream;
 }
 
-std::istream& operator>> (std::istream& __stream, Test2Multi& __bean) {
+inline std::istream& operator>> (std::istream& __stream, Test2Multi& __bean) {
     char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
         ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");

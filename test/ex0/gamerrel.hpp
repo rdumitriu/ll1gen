@@ -68,26 +68,34 @@ public:
     //ll1gen::getters_begin
 
     
+    inline
     const Gamer & getGamer() const { return _gamer; }
 
+    inline
     void setGamer( const Gamer & __val) { _gamer = __val; }
 
 
 
+    inline
     const std::vector<unsigned int>  & getEnemyIds() const { return _enemyIds; }
 
+    inline
     void setEnemyIds( const std::vector<unsigned int>  & __val) { _enemyIds = __val; }
 
 
 
+    inline
     const std::vector<double>  & getEnemyCoords() const { return _enemyCoords; }
 
+    inline
     void setEnemyCoords( const std::vector<double>  & __val) { _enemyCoords = __val; }
 
 
 
+    inline
     const std::string & getDescription() const { return _description; }
 
+    inline
     void setDescription( const std::string & __val) { _description = __val; }
 
 
@@ -120,7 +128,7 @@ std::string _description;
 //ll1gen::field_decl_end
 };
 
-std::ostream& operator<< (std::ostream& __stream, const GamerRel& __bean) {
+inline std::ostream& operator<< (std::ostream& __stream, const GamerRel& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
@@ -146,7 +154,7 @@ __stream << ",";
     return __stream;
 }
 
-std::istream& operator>> (std::istream& __stream, GamerRel& __bean) {
+inline std::istream& operator>> (std::istream& __stream, GamerRel& __bean) {
     char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
         ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");

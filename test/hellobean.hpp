@@ -58,20 +58,26 @@ public:
     //ll1gen::getters_begin
 
     
+    inline
     const std::string & getFname() const { return _fname; }
 
+    inline
     void setFname( const std::string & __val) { _fname = __val; }
 
 
 
+    inline
     const std::string & getLname() const { return _lname; }
 
+    inline
     void setLname( const std::string & __val) { _lname = __val; }
 
 
 
+    inline
     const unsigned int & getAge() const { return _age; }
 
+    inline
     void setAge(  unsigned int  __val) { _age = __val; }
 
 
@@ -101,7 +107,7 @@ unsigned int _age;
 //ll1gen::field_decl_end
 };
 
-std::ostream& operator<< (std::ostream& __stream, const HelloBean& __bean) {
+inline std::ostream& operator<< (std::ostream& __stream, const HelloBean& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
@@ -121,7 +127,7 @@ __stream << ",";
     return __stream;
 }
 
-std::istream& operator>> (std::istream& __stream, HelloBean& __bean) {
+inline std::istream& operator>> (std::istream& __stream, HelloBean& __bean) {
     char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
         ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");

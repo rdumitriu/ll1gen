@@ -69,26 +69,34 @@ public:
     //ll1gen::getters_begin
 
     
+    inline
     const std::string & getName() const { return _name; }
 
+    inline
     void setName( const std::string & __val) { _name = __val; }
 
 
 
+    inline
     const unsigned int & getAge() const { return _age; }
 
+    inline
     void setAge(  unsigned int  __val) { _age = __val; }
 
 
 
+    inline
     const std::shared_ptr<Weapon>  & getWeapon() const { return _weapon; }
 
+    inline
     void setWeapon(  std::shared_ptr<Weapon>   __val) { _weapon = __val; }
 
 
 
+    inline
     const Score & getScore() const { return _score; }
 
+    inline
     void setScore( const Score & __val) { _score = __val; }
 
 
@@ -121,7 +129,7 @@ Score _score;
 //ll1gen::field_decl_end
 };
 
-std::ostream& operator<< (std::ostream& __stream, const Gamer& __bean) {
+inline std::ostream& operator<< (std::ostream& __stream, const Gamer& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
@@ -149,7 +157,7 @@ __stream << ",";
     return __stream;
 }
 
-std::istream& operator>> (std::istream& __stream, Gamer& __bean) {
+inline std::istream& operator>> (std::istream& __stream, Gamer& __bean) {
     char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
         ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");

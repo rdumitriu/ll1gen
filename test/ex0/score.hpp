@@ -49,14 +49,18 @@ public:
     //ll1gen::getters_begin
 
     
+    inline
     const unsigned int & getCoins() const { return _coins; }
 
+    inline
     void setCoins(  unsigned int  __val) { _coins = __val; }
 
 
 
+    inline
     const unsigned int & getMana() const { return _mana; }
 
+    inline
     void setMana(  unsigned int  __val) { _mana = __val; }
 
 
@@ -83,7 +87,7 @@ unsigned int _mana;
 //ll1gen::field_decl_end
 };
 
-std::ostream& operator<< (std::ostream& __stream, const Score& __bean) {
+inline std::ostream& operator<< (std::ostream& __stream, const Score& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
@@ -99,7 +103,7 @@ __stream << ",";
     return __stream;
 }
 
-std::istream& operator>> (std::istream& __stream, Score& __bean) {
+inline std::istream& operator>> (std::istream& __stream, Score& __bean) {
     char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
         ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");

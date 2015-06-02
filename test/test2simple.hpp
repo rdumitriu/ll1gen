@@ -67,26 +67,34 @@ public:
     //ll1gen::getters_begin
 
     
+    inline
     const std::shared_ptr<std::string>  & getOptionalName() const { return _optionalName; }
 
+    inline
     void setOptionalName(  std::shared_ptr<std::string>   __val) { _optionalName = __val; }
 
 
 
+    inline
     const bool & getIsBool() const { return _isBool; }
 
+    inline
     void setIsBool(  bool  __val) { _isBool = __val; }
 
 
 
+    inline
     const std::shared_ptr<bool>  & getIsReallyBool() const { return _isReallyBool; }
 
+    inline
     void setIsReallyBool(  std::shared_ptr<bool>   __val) { _isReallyBool = __val; }
 
 
 
+    inline
     const int & getNumber() const { return _number; }
 
+    inline
     void setNumber(  int  __val) { _number = __val; }
 
 
@@ -119,7 +127,7 @@ int _number;
 //ll1gen::field_decl_end
 };
 
-std::ostream& operator<< (std::ostream& __stream, const Test2Simple& __bean) {
+inline std::ostream& operator<< (std::ostream& __stream, const Test2Simple& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
@@ -150,7 +158,7 @@ __stream << ",";
     return __stream;
 }
 
-std::istream& operator>> (std::istream& __stream, Test2Simple& __bean) {
+inline std::istream& operator>> (std::istream& __stream, Test2Simple& __bean) {
     char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
         ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");

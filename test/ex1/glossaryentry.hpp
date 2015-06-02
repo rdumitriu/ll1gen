@@ -95,44 +95,58 @@ public:
     //ll1gen::getters_begin
 
     
+    inline
     const std::string & getID() const { return _ID; }
 
+    inline
     void setID( const std::string & __val) { _ID = __val; }
 
 
 
+    inline
     const std::string & getSortAs() const { return _SortAs; }
 
+    inline
     void setSortAs( const std::string & __val) { _SortAs = __val; }
 
 
 
+    inline
     const std::string & getGlossTerm() const { return _GlossTerm; }
 
+    inline
     void setGlossTerm( const std::string & __val) { _GlossTerm = __val; }
 
 
 
+    inline
     const std::string & getAcronym() const { return _Acronym; }
 
+    inline
     void setAcronym( const std::string & __val) { _Acronym = __val; }
 
 
 
+    inline
     const std::string & getAbbrev() const { return _Abbrev; }
 
+    inline
     void setAbbrev( const std::string & __val) { _Abbrev = __val; }
 
 
 
+    inline
     const GlossaryDefinition & getGlossDef() const { return _GlossDef; }
 
+    inline
     void setGlossDef( const GlossaryDefinition & __val) { _GlossDef = __val; }
 
 
 
+    inline
     const std::string & getGlossSee() const { return _GlossSee; }
 
+    inline
     void setGlossSee( const std::string & __val) { _GlossSee = __val; }
 
 
@@ -174,7 +188,7 @@ std::string _GlossSee;
 //ll1gen::field_decl_end
 };
 
-std::ostream& operator<< (std::ostream& __stream, const GlossaryEntry& __bean) {
+inline std::ostream& operator<< (std::ostream& __stream, const GlossaryEntry& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
@@ -210,7 +224,7 @@ __stream << ",";
     return __stream;
 }
 
-std::istream& operator>> (std::istream& __stream, GlossaryEntry& __bean) {
+inline std::istream& operator>> (std::istream& __stream, GlossaryEntry& __bean) {
     char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
         ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");

@@ -50,14 +50,18 @@ public:
     //ll1gen::getters_begin
 
     
+    inline
     const std::string & getTitle() const { return _title; }
 
+    inline
     void setTitle( const std::string & __val) { _title = __val; }
 
 
 
+    inline
     const GlossaryDiv & getGlossDiv() const { return _GlossDiv; }
 
+    inline
     void setGlossDiv( const GlossaryDiv & __val) { _GlossDiv = __val; }
 
 
@@ -84,7 +88,7 @@ GlossaryDiv _GlossDiv;
 //ll1gen::field_decl_end
 };
 
-std::ostream& operator<< (std::ostream& __stream, const Glossary& __bean) {
+inline std::ostream& operator<< (std::ostream& __stream, const Glossary& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
@@ -100,7 +104,7 @@ __stream << ",";
     return __stream;
 }
 
-std::istream& operator>> (std::istream& __stream, Glossary& __bean) {
+inline std::istream& operator>> (std::istream& __stream, Glossary& __bean) {
     char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
         ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");

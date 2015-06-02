@@ -49,14 +49,18 @@ public:
     //ll1gen::getters_begin
 
     
+    inline
     const std::string & getId() const { return _id; }
 
+    inline
     void setId( const std::string & __val) { _id = __val; }
 
 
 
+    inline
     const std::string & getLabel() const { return _label; }
 
+    inline
     void setLabel( const std::string & __val) { _label = __val; }
 
 
@@ -83,7 +87,7 @@ std::string _label;
 //ll1gen::field_decl_end
 };
 
-std::ostream& operator<< (std::ostream& __stream, const MenuItem& __bean) {
+inline std::ostream& operator<< (std::ostream& __stream, const MenuItem& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
@@ -99,7 +103,7 @@ __stream << ",";
     return __stream;
 }
 
-std::istream& operator>> (std::istream& __stream, MenuItem& __bean) {
+inline std::istream& operator>> (std::istream& __stream, MenuItem& __bean) {
     char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
         ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");

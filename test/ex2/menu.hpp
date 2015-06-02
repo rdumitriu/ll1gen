@@ -50,14 +50,18 @@ public:
     //ll1gen::getters_begin
 
     
+    inline
     const std::string & getHeader() const { return _header; }
 
+    inline
     void setHeader( const std::string & __val) { _header = __val; }
 
 
 
+    inline
     const std::vector<std::shared_ptr<MenuItem>> & getItems() const { return _items; }
 
+    inline
     void setItems( const std::vector<std::shared_ptr<MenuItem>> & __val) { _items = __val; }
 
 
@@ -84,7 +88,7 @@ std::vector<std::shared_ptr<MenuItem>> _items;
 //ll1gen::field_decl_end
 };
 
-std::ostream& operator<< (std::ostream& __stream, const Menu& __bean) {
+inline std::ostream& operator<< (std::ostream& __stream, const Menu& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
@@ -101,7 +105,7 @@ __stream << ",";
     return __stream;
 }
 
-std::istream& operator>> (std::istream& __stream, Menu& __bean) {
+inline std::istream& operator>> (std::istream& __stream, Menu& __bean) {
     char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
         ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");

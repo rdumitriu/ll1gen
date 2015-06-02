@@ -49,14 +49,18 @@ public:
     //ll1gen::getters_begin
 
     
+    inline
     const std::string & getName() const { return _name; }
 
+    inline
     void setName( const std::string & __val) { _name = __val; }
 
 
 
+    inline
     const double & getDamage() const { return _damage; }
 
+    inline
     void setDamage(  double  __val) { _damage = __val; }
 
 
@@ -83,7 +87,7 @@ double _damage;
 //ll1gen::field_decl_end
 };
 
-std::ostream& operator<< (std::ostream& __stream, const Weapon& __bean) {
+inline std::ostream& operator<< (std::ostream& __stream, const Weapon& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
@@ -99,7 +103,7 @@ __stream << ",";
     return __stream;
 }
 
-std::istream& operator>> (std::istream& __stream, Weapon& __bean) {
+inline std::istream& operator>> (std::istream& __stream, Weapon& __bean) {
     char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
         ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");

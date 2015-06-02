@@ -68,26 +68,34 @@ public:
     //ll1gen::getters_begin
 
     
+    inline
     const std::vector<std::shared_ptr<bool>> & getBoolVec() const { return _boolVec; }
 
+    inline
     void setBoolVec( const std::vector<std::shared_ptr<bool>> & __val) { _boolVec = __val; }
 
 
 
+    inline
     const std::vector<std::shared_ptr<std::string>> & getStringVec() const { return _stringVec; }
 
+    inline
     void setStringVec( const std::vector<std::shared_ptr<std::string>> & __val) { _stringVec = __val; }
 
 
 
+    inline
     const std::vector<std::shared_ptr<int>> & getIntVec() const { return _intVec; }
 
+    inline
     void setIntVec( const std::vector<std::shared_ptr<int>> & __val) { _intVec = __val; }
 
 
 
+    inline
     const std::vector<std::shared_ptr<TestPerson>> & getObjVec() const { return _objVec; }
 
+    inline
     void setObjVec( const std::vector<std::shared_ptr<TestPerson>> & __val) { _objVec = __val; }
 
 
@@ -120,7 +128,7 @@ std::vector<std::shared_ptr<TestPerson>> _objVec;
 //ll1gen::field_decl_end
 };
 
-std::ostream& operator<< (std::ostream& __stream, const TestNEVecs& __bean) {
+inline std::ostream& operator<< (std::ostream& __stream, const TestNEVecs& __bean) {
     __stream << "{";
     //ll1gen::field_ostream_begin
 
@@ -148,7 +156,7 @@ __stream << ",";
     return __stream;
 }
 
-std::istream& operator>> (std::istream& __stream, TestNEVecs& __bean) {
+inline std::istream& operator>> (std::istream& __stream, TestNEVecs& __bean) {
     char __startObjectMrk = ll1gen::json::detail::lookUpAndEat(__stream, "{n");
     if(__startObjectMrk == 'n') {
         ll1gen::json::detail::lookUpTokenRemainder(__stream, __startObjectMrk, "null");
